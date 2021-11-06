@@ -9,12 +9,14 @@ import pytest
 def test_part1(test_input, expected):
     assert Day2(content=test_input).part1() == expected
 
+
 @pytest.mark.parametrize("test_input,expected", [
     ('2x3x4', 34),
     ('1x1x10', 14)
 ])
 def test_part2(test_input, expected):
     assert Day2(content=test_input).part2() == expected
+
 
 def test_actual_input():
     with open('./tests/aoc_2015/data/2015day2.txt', 'r') as file:
