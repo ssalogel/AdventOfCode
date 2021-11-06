@@ -1,4 +1,4 @@
-from AdventUtils.Grid2D import Position2D
+from AdventUtils.Grid2D import Position2D, Grid2DBool, Grid2Dint
 
 
 def test_move_up():
@@ -19,3 +19,34 @@ def test_move_left():
 def test_move_right():
     assert Position2D(0, 0).move_right() == Position2D(1, 0)
     assert Position2D(-1, -1).move_right() == Position2D(0, -1)
+
+
+def test_grid_bool():
+    grid = Grid2DBool()
+    pos = (5, 15)
+    grid.turn_on(pos)
+    assert grid.grid.get(pos)
+    grid.turn_off(pos)
+    assert not grid.grid.get(pos)
+    grid.turn_off(pos)
+    assert not grid.grid.get(pos)
+    grid.toggle(pos)
+    assert grid.grid.get(pos)
+    grid.toggle(pos)
+    assert not grid.grid.get(pos)
+
+
+def test_grid_int():
+    grid = Grid2Dint()
+    pos = (5, 15)
+    grid.turn_on(pos)
+    assert grid.grid.get(pos) == 1
+    grid.turn_off(pos)
+    assert grid.grid.get(pos) == 0
+    grid.turn_off(pos)
+    assert grid.grid.get(pos) == 0
+    grid.toggle(pos)
+    assert grid.grid.get(pos) == 2
+
+
+

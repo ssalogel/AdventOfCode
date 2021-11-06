@@ -21,21 +21,17 @@ class Day6(Day):
     def __init__(self, content=None):
         super().__init__(day=6, year=2015, content=content)
 
-    def parse_content(self):
+    def parse_content(self) -> list[tuple[str, tuple[int, int], tuple[int, int]]]:
         data = self.content.replace('turn ', '').split('\n')
         res = []
 
-        def make_coord(coord: str):
+        def make_coord(coord: str) -> tuple[int, int]:
             coord_split: list[str] = coord.split(',')
             return int(coord_split[0]), int(coord_split[1])
 
         for row in data:
-            cells = row.split(' ')
-            cells[1] = make_coord(cells[1])
-            cells[3] = make_coord(cells[3])
-            cells.pop(2)
-            res.append(cells)
-
+            datum = row.split(' ')
+            res.append((datum[0], make_coord(datum[1]), make_coord(datum[3])))
         return res
 
     def apply(self, instructions, grid: Grid) -> Grid:
