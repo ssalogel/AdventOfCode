@@ -7,12 +7,5 @@ import pytest
     ("pqrstuv", 1048970),
 
 ])
-def test_part1(test_input, expected):
-    assert Day4(content=test_input).part1() == expected
-
-
-def test_actual_input():
-    with open('./tests/aoc_2015/data/2015day4.txt', 'r') as file:
-        content = file.read().strip()
-    assert Day4(content=content).part1() == 346386
-    assert Day4(content=content).part2() == 9958218
+def test_find_hash(test_input, expected):
+    assert Day4(content=test_input).find_hash(test_input, '00000') == expected
