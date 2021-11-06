@@ -1,6 +1,7 @@
 from AoC2015.Day1 import Day1
 from AoC2015.Day2 import Day2
+from AoC2015.Day3 import Day3
 
 
 def get_all_days():
-    return [Day1, Day2]
+    return [Day1, Day2, Day3]
