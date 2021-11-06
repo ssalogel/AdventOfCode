@@ -56,5 +56,3 @@ class Day12(Day):
                     elif isinstance(elem, int):
                         res += elem
         return res
-
-
