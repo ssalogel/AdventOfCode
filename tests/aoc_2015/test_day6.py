@@ -1,4 +1,4 @@
-from AoC2015.Day6 import Day6
+from AoC2015.Day6 import Day6, Grid
 from AdventUtils.Grid2D import Grid2DBool
 import pytest
 
@@ -15,7 +15,7 @@ def test_parse_content(test_input, expected):
 
 def test_apply():
     instr = [('on', (0, 10), (0, 15))]
-    grid = Grid2DBool()
+    grid: Grid = Grid2DBool()
     grid = Day6(content='turn on 0,10 through 0,15').apply(instr, grid)
     assert not grid.grid.get((0, 9))
     assert grid.grid.get((0, 10))
