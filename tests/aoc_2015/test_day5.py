@@ -13,7 +13,7 @@ import pytest
     ('dvszwmarrgswjxmb', False)
 ])
 def test_has_at_least_three_vowels(test_input, expected):
-    assert Day5(content='').has_at_least_three_vowels(string=test_input) == expected
+    assert Day5(content='test').has_at_least_three_vowels(string=test_input) == expected
 
 
 @pytest.mark.parametrize("test_input,expected", [
@@ -27,7 +27,7 @@ def test_has_at_least_three_vowels(test_input, expected):
     ('dvszwmarrgswjxmb', True)
 ])
 def test_has_at_least_one_double_letter(test_input, expected):
-    assert Day5(content='').has_at_least_one_double_letter(string=test_input) == expected
+    assert Day5(content='test').has_at_least_one_double_letter(string=test_input) == expected
 
 
 @pytest.mark.parametrize("test_input,expected", [
@@ -41,7 +41,7 @@ def test_has_at_least_one_double_letter(test_input, expected):
     ('dvszwmarrgswjxmb', True)
 ])
 def test_does_not_contain_forbidden_strings(test_input, expected):
-    assert Day5(content='').does_not_contain_forbidden_strings(string=test_input) == expected
+    assert Day5(content='test').does_not_contain_forbidden_strings(string=test_input) == expected
 
 
 @pytest.mark.parametrize("test_input,expected", [
@@ -54,7 +54,7 @@ def test_does_not_contain_forbidden_strings(test_input, expected):
     ('ieodomkazucvgmuy', False)
 ])
 def test_has_repeating_pair_no_overlaps(test_input, expected):
-    assert Day5(content='').has_repeating_pair_no_overlap(string=test_input) == expected
+    assert Day5(content='test').has_repeating_pair_no_overlap(string=test_input) == expected
 
 
 @pytest.mark.parametrize("test_input,expected", [
@@ -67,7 +67,7 @@ def test_has_repeating_pair_no_overlaps(test_input, expected):
     ('ieodomkazucvgmuy', True)
 ])
 def repeat_letter_with_one_between(test_input, expected):
-    assert Day5(content='').repeat_letter_with_one_between(string=test_input) == expected
+    assert Day5(content='test').repeat_letter_with_one_between(string=test_input) == expected
 
 
 def test_part1():
