@@ -9,16 +9,15 @@ class Day4(Day):
     def parse_content(self) -> str:
         return self.content.strip()
 
-    def part1(self) -> int:
+    def find_hash(self, start: str, pattern: str) -> int:
         x = 0
         while True:
-            if md5((self.data_p1 + str(x)).encode()).hexdigest().startswith('00000'):
+            if md5((start + str(x)).encode()).hexdigest().startswith(pattern):
                 return x
             x += 1
 
+    def part1(self) -> int:
+        return self.find_hash(self.data_p1, '00000')
+
     def part2(self) -> int:
-        x = 0
-        while True:
-            if md5((self.data_p1 + str(x)).encode()).hexdigest().startswith('000000'):
-                return x
-            x += 1
+        return self.find_hash(self.data_p2, '000000')
