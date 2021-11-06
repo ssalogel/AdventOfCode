@@ -4,10 +4,11 @@ from AoC2015.Day3 import Day3
 from AoC2015.Day4 import Day4
 from AoC2015.Day5 import Day5
 from AoC2015.Day6 import Day6
+from AoC2015.Day7 import Day7
 
 
 def get_all_days():
-    return [Day1, Day2, Day3, Day4, Day5, Day6]
+    return [Day1, Day2, Day3, Day4, Day5, Day6, Day7]
 
 
 def get_fast_days():

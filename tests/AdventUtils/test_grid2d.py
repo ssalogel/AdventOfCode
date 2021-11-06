@@ -47,6 +47,3 @@ def test_grid_int():
     assert grid.grid.get(pos) == 0
     grid.toggle(pos)
     assert grid.grid.get(pos) == 2
-
-
-
