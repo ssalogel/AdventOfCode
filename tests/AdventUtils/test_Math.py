@@ -36,3 +36,23 @@ def test_bitwise_lshift(op1, op2, mask, expected):
 ])
 def test_bitwise_rshift(op1, op2, mask, expected):
     assert Math.bitwise_rshift(op1, op2, mask) == expected
+
+
+@pytest.mark.parametrize("test_input, expected", [
+    (52, [1, 2, 4, 13, 26, 52]),
+    (1, [1]),
+    (17, [1, 17]),
+    (12, [1, 2, 3, 4, 6, 12])
+])
+def test_divisors(test_input, expected):
+    assert Math.divisors(test_input) == expected
+
+
+@pytest.mark.parametrize("test_input, expected", [
+    (52, [1, 2, 4, 13, 26, 52]),
+    (1, [1]),
+    (17, [1, 17]),
+    (12, [1, 2, 3, 4, 6, 12])
+])
+def test_magic_divisors(test_input, expected):
+    assert sorted(Math.magic_divisors(test_input)) == expected
