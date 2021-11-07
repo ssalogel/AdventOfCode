@@ -13,7 +13,7 @@ class Day(ABC):
             self.content = content
         else:
             cookie = os.environ.get("COOKIE", "test")
-            if not os.path.exists(f"data/day{day}"):
+            if not os.path.exists(f"data/{year}day{day}.txt"):
                 r = requests.get(f"https://adventofcode.com/{year}/day/{day}/input", cookies={"session": cookie})
                 with open(f'data/{year}day{day}.txt', 'wb') as f:
                     f.write(r.content)
