@@ -8,8 +8,8 @@ x AND y -> d
 x OR y -> e
 """
     print(Day7(content=content).parse_content())
-    assert Day7(content=content).parse_content() == [(['123'], 'x'), (['456'], 'y'), (['x', 'AND', 'y'], 'd'),
-                                                     (['x', 'OR', 'y'], 'e')]
+    assert Day7(content=content).parse_content() == [(('123',), 'x'), (('456',), 'y'), (('x', 'AND', 'y'), 'd'),
+                                                     (('x', 'OR', 'y'), 'e')]
 
 
 def test_actual_input():
