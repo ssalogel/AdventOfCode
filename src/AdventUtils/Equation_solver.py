@@ -1,6 +1,3 @@
-from functools import partial
-
-
 class Solver:
     def __init__(self, one_op_instr, two_op_instr):
         self.one_op_instr = one_op_instr
