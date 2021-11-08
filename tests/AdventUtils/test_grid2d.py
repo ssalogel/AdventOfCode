@@ -1,24 +1,41 @@
 from AdventUtils.Grid2D import Position2D, Grid2DBool, Grid2Dint
+import pytest
 
 
-def test_move_up():
-    assert Position2D(0, 0).move_up() == Position2D(0, 1)
-    assert Position2D(-1, -1).move_up() == Position2D(-1, 0)
+@pytest.mark.parametrize("x, y, mag, ex_x, ex_y", [
+    (0, 0, 1, 0, 1),
+    (-1, -1, 1, -1, 0),
+    (0, 0, 5, 0, 5)
+])
+def test_move_up(x, y, mag, ex_x, ex_y):
+    assert Position2D(x, y).move_up(mag) == Position2D(ex_x, ex_y)
 
 
-def test_move_down():
-    assert Position2D(0, 0).move_down() == Position2D(0, -1)
-    assert Position2D(-1, -1).move_down() == Position2D(-1, -2)
+@pytest.mark.parametrize("x, y, mag, ex_x, ex_y", [
+    (0, 0, 1, 0, -1),
+    (-1, -1, 1, -1, -2),
+    (0, 0, 5, 0, -5)
+])
+def test_move_down(x, y, mag, ex_x, ex_y):
+    assert Position2D(x, y).move_down(mag) == Position2D(ex_x, ex_y)
 
 
-def test_move_left():
-    assert Position2D(0, 0).move_left() == Position2D(-1, 0)
-    assert Position2D(-1, -1).move_left() == Position2D(-2, -1)
+@pytest.mark.parametrize("x, y, mag, ex_x, ex_y", [
+    (0, 0, 1, -1, 0),
+    (-1, -1, 1, -2, -1),
+    (0, 0, 5, -5, 0)
+])
+def test_move_left(x, y, mag, ex_x, ex_y):
+    assert Position2D(x, y).move_left(mag) == Position2D(ex_x, ex_y)
 
 
-def test_move_right():
-    assert Position2D(0, 0).move_right() == Position2D(1, 0)
-    assert Position2D(-1, -1).move_right() == Position2D(0, -1)
+@pytest.mark.parametrize("x, y, mag, ex_x, ex_y", [
+    (0, 0, 1, 1, 0),
+    (-1, -1, 1, 0, -1),
+    (0, 0, 5, 5, 0)
+])
+def test_move_right(x, y, mag, ex_x, ex_y):
+    assert Position2D(x, y).move_right(mag) == Position2D(ex_x, ex_y)
 
 
 def test_grid_bool():
