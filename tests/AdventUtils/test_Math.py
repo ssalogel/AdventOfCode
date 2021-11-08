@@ -56,3 +56,11 @@ def test_divisors(test_input, expected):
 ])
 def test_magic_divisors(test_input, expected):
     assert sorted(Math.magic_divisors(test_input)) == expected
+
+
+@pytest.mark.parametrize("target, nums, expected", [
+    (10, range(1, 11), 1),
+    (10, range(1, 10), 4)
+])
+def test_(target, nums, expected):
+    assert len(Math.get_subsets_min_len_sum_target(target=target, nums=nums)) == expected

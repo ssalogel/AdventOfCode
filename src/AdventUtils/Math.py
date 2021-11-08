@@ -1,6 +1,6 @@
 from typing import Optional
 from math import sqrt, floor
-from itertools import chain, cycle, accumulate
+from itertools import chain, cycle, accumulate, combinations
 
 
 def bitwise_not(operand: int, mask: Optional[int] = None) -> int:
@@ -62,3 +62,11 @@ def magic_divisors(n: int) -> list[int]:
     for e in prime_powers(n):
         r += [a * b for a in r for b in e]
     return r
+
+
+def get_subsets_min_len_sum_target(target: int, nums):
+    for i in range(len(nums)):
+        groups = [c for c in combinations(nums, i) if sum(c) == target]
+        if groups:
+            return groups
+    return []
