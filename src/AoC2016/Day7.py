@@ -2,7 +2,7 @@ from AdventUtils.Day import Day
 
 
 class Day7(Day):
-    def __init__(self, content="abcd[bddb]xyyx"):
+    def __init__(self, content=None):
         super().__init__(day=7, year=2016, content=content)
 
     def parse_content(self) -> list[tuple[list[str], list[str]]]:
