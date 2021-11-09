@@ -10,7 +10,7 @@ from time import time
 # print(f"2015 done in : {t1 - t0:.3} seconds\n")
 
 t0 = time()
-for day in d2016.get_all_days():
+for day in d2016.get_fast_days():
     day().run()
 t1 = time()
 print(f"2016 done in : {t1 - t0:.3} seconds\n")
