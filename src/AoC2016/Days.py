@@ -6,7 +6,7 @@ from AoC2016.Day5 import Day5
 from AoC2016.Day6 import Day6
 from AoC2016.Day7 import Day7
 from AoC2016.Day8 import Day8
-# from AoC2016.Day9 import Day9
+from AoC2016.Day9 import Day9
 # from AoC2016.Day10 import Day10
 # from AoC2016.Day11 import Day11
 # from AoC2016.Day12 import Day12
@@ -26,7 +26,7 @@ from AoC2016.Day8 import Day8
 
 
 def get_all_days():
-    return [Day1, Day2, Day3, Day4, Day5, Day6, Day7, Day8]  # , Day9, Day10, Day11, Day12, Day13,
+    return [Day1, Day2, Day3, Day4, Day5, Day6, Day7, Day8, Day9]  # , Day10, Day11, Day12, Day13,
     # Day14, Day15, Day16, Day17, Day18, Day19, Day20, Day21, Day22, Day23, Day24, Day25]
 
 

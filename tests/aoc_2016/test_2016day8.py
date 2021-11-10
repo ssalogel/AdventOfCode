@@ -6,7 +6,7 @@ def test_part1():
 rotate column x=1 by 1
 rotate row y=0 by 4
 rotate column x=1 by 1"""
-    assert Day8(content=content).part2() == 6
+    assert Day8(content=content).part1() == 6
 
 
 def test_actual_input():
