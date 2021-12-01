@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from time import time
+from time import perf_counter
 import os
 import requests
 from typing import Optional
@@ -36,10 +36,10 @@ class Day(ABC):
 
     def run(self):
         print(f'starting day {self.day} of {self.year}\n')
-        t0 = time()
+        t0 = perf_counter()
         self.res = self.part1()
-        t1 = time()
+        t1 = perf_counter()
         print(f"Part1 : {t1 - t0:.3} seconds\n{self.res}\n")
         res = self.part2()
-        t2 = time()
+        t2 = perf_counter()
         print(f"Part2 : {t2 - t1:.3} seconds\n{res}\n")
