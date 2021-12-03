@@ -1,4 +1,5 @@
 from AdventUtils.Day import Day
+from itertools import islice
 
 
 class Day1(Day):
@@ -9,8 +10,7 @@ class Day1(Day):
         return [int(x) for x in self.content.split('\n')]
 
     def part1(self) -> int:
-        return sum(x < y for x, y in zip(self.data_p1, self.data_p1[1:]))
-
+        return sum(x < y for x, y in zip(self.data_p1, islice(self.data_p1, 1, None)))
 
     def part2(self) -> int:
-        return sum(x < y for x, y in zip(self.data_p1, self.data_p1[3:]))
+        return sum(x < y for x, y in zip(self.data_p1, islice(self.data_p1, 3, None)))
