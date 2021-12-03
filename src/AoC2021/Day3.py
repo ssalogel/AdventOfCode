@@ -32,12 +32,10 @@ class Day3(Day):
             co2_counts = Counter(co2_masked).most_common()
             if len(oxy_counts) != 1:
                 oxy_most_common = oxy_counts[0][0] if oxy_counts[0][1] != oxy_counts[1][1] else 1
-            else:
-                oxy_most_common = oxy_counts[0][0]
+                oxygen = list(filter(lambda x: x & (1 << pos) == oxy_most_common << pos, oxygen))
+
             if len(co2_counts) != 1:
                 co2_least_common =  co2_counts[1][0] if co2_counts[0][1] != co2_counts[1][1] else 0
-            else:
-                co2_least_common = co2_counts[0][0]
-            oxygen = list(filter(lambda x: x & (1 << pos) == oxy_most_common << pos, oxygen))
-            co2 = list(filter(lambda x: x & (1 << pos) == co2_least_common << pos, co2))
+                co2 = list(filter(lambda x: x & (1 << pos) == co2_least_common << pos, co2))
+
         return oxygen[0] * co2[0]
