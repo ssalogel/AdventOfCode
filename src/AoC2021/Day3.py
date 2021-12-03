@@ -11,7 +11,7 @@ class Day3(Day):
 
     def part1(self) -> int:
         length = len(self.data_p1[0])
-        measurements = list(map(lambda x: int(x, 2), self.data_p1))
+        measurements = [int(x, 2) for x in self.data_p1]
         mask = 2**length -1
         gamma = 0
         for pos in reversed(range(length)):
@@ -22,7 +22,7 @@ class Day3(Day):
 
     def part2(self) -> int:
         length = len(self.data_p2[0])
-        measurements = list(map(lambda x: int(x, 2), self.data_p2))
+        measurements = [int(x, 2) for x in self.data_p2]
         oxygen = co2 = measurements
         for pos in reversed(range(length)):
             oxy_masked = [(m & (1 << pos)) >> pos for m in oxygen]
