@@ -6,7 +6,7 @@ class Day3(Day):
     def __init__(self, content=None):
         super().__init__(day=3, year=2021, content=content)
 
-    def parse_content(self) -> str:
+    def parse_content(self) -> list[str]:
         return self.content.split('\n')
 
     def part1(self) -> int:
@@ -36,5 +36,4 @@ class Day3(Day):
             if len(co2_counts) != 1:
                 co2_least_common =  co2_counts[1][0] if co2_counts[0][1] != co2_counts[1][1] else 0
                 co2 = list(filter(lambda x: x & (1 << pos) == co2_least_common << pos, co2))
-
         return oxygen[0] * co2[0]

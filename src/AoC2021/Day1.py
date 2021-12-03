@@ -6,7 +6,7 @@ class Day1(Day):
     def __init__(self, content=None):
         super().__init__(day=1, year=2021, content=content)
 
-    def parse_content(self):
+    def parse_content(self) -> list[int]:
         return [int(x) for x in self.content.split('\n')]
 
     def part1(self) -> int:

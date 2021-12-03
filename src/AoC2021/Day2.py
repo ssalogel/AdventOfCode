@@ -5,7 +5,7 @@ class Day2(Day):
     def __init__(self, content=None):
         super().__init__(day=2, year=2021, content=content)
 
-    def parse_content(self) -> str:
+    def parse_content(self) -> list[tuple[str, int]]:
         return [(d, int(m)) for d, m in (d.split(' ') for d in self.content.split('\n'))]
 
     def part1(self) -> int:
@@ -20,7 +20,6 @@ class Day2(Day):
             else:
                 raise NotImplementedError
         return pos * depth
-
 
     def part2(self) -> int:
         pos, depth, aim = 0, 0, 0
