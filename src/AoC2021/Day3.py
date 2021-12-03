@@ -13,11 +13,10 @@ class Day3(Day):
         length = len(self.data_p1[0])
         measurements = list(map(lambda x: int(x, 2), self.data_p1))
         mask = 2**length -1
-        most_common_digits = []
+        gamma = 0
         for pos in reversed(range(length)):
             masked = [(m & (1 << pos)) >> pos for m in measurements]
-            most_common_digits.append(Counter(masked).most_common()[0][0])
-        gamma = int(''.join(str(d) for d in most_common_digits), 2)
+            gamma += Counter(masked).most_common()[0][0] << pos
         epsilon = ~gamma & mask
         return gamma * epsilon
 
