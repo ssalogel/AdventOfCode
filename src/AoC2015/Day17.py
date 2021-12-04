@@ -7,12 +7,12 @@ class Day17(Day):
         super().__init__(day=17, year=2015, content=content)
         self.target = target
 
-    def parse_content(self):
-        data = self.content.strip().split('\n')
+    def parse_content(self, content: str) -> list[int]:
+        data = content.strip().split('\n')
         return [int(d) for d in data]
 
-    def part1(self):
-        containers = self.data_p1
+    def part1(self, parsed_content: list[int]) -> int:
+        containers = parsed_content
         containers.sort()
         tot = 0
         count = 0
@@ -37,8 +37,8 @@ class Day17(Day):
             combo.extend([x for x in potentials if sum(x) == self.target])
         return len(combo)
 
-    def part2(self):
-        containers = self.data_p1
+    def part2(self, parsed_content: list[int]) -> int:
+        containers = parsed_content
         containers.sort()
         tot = 0
         count = 0

@@ -6,8 +6,8 @@ class Day9(Day):
     def __init__(self, content=None):
         super().__init__(day=9, year=2016, content=content)
 
-    def parse_content(self) -> str:
-        return self.content
+    def parse_content(self, content: str) -> str:
+        return content
 
     def decompress(self, text: str) -> str:
         stream = deque(text)
@@ -27,11 +27,11 @@ class Day9(Day):
             res.extend(to_repeat*int(times))
         return ''.join(res + list(stream))
 
-    def part1(self) -> int:
-        return len(self.decompress(self.data_p1))
+    def part1(self, parsed_content: str) -> int:
+        return len(self.decompress(parsed_content))
 
-    def part2(self) -> int:
-        compressed: str = self.data_p2
+    def part2(self, parsed_content: str) -> int:
+        compressed: str = parsed_content
         weight = [1] * len(compressed)
         ix = 0
         while ix < len(compressed):

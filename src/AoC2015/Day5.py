@@ -5,8 +5,8 @@ class Day5(Day):
     def __init__(self, content=None):
         super().__init__(day=5, year=2015, content=content)
 
-    def parse_content(self) -> list[str]:
-        return list(self.content.split('\n'))
+    def parse_content(self, content: str) -> list[str]:
+        return content.split('\n')
 
     @classmethod
     def has_at_least_three_vowels(cls, string: str) -> bool:
@@ -27,10 +27,10 @@ class Day5(Day):
                 return False
         return True
 
-    def part1(self) -> int:
-        vowels = set(filter(self.has_at_least_three_vowels, self.data_p1))
-        doubles = set(filter(self.has_at_least_one_double_letter, self.data_p1))
-        allowed = set(filter(lambda x: self.does_not_contain_forbidden_strings(x), self.data_p1))
+    def part1(self, parsed_content: list[str]) -> int:
+        vowels = set(filter(self.has_at_least_three_vowels, parsed_content))
+        doubles = set(filter(self.has_at_least_one_double_letter, parsed_content))
+        allowed = set(filter(lambda x: self.does_not_contain_forbidden_strings(x), parsed_content))
         return len(vowels.intersection(doubles).intersection(allowed))
 
     @classmethod
@@ -48,7 +48,7 @@ class Day5(Day):
                 return True
         return False
 
-    def part2(self) -> int:
-        two_pairs = set(filter(self.has_repeating_pair_no_overlap, self.data_p2))
-        repeat = set(filter(self.repeat_letter_with_one_between, self.data_p2))
+    def part2(self, parsed_content: list[str]) -> int:
+        two_pairs = set(filter(self.has_repeating_pair_no_overlap, parsed_content))
+        repeat = set(filter(self.repeat_letter_with_one_between, parsed_content))
         return len(two_pairs.intersection(repeat))

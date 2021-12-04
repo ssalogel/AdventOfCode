@@ -8,9 +8,9 @@ class Day4(Day):
     def __init__(self, content=None):
         super().__init__(day=4, year=2016, content=content)
 
-    def parse_content(self) -> list[tuple[str, int, str]]:
+    def parse_content(self, content: str) -> list[tuple[str, int, str]]:
         res = []
-        for row in self.content.split('\n'):
+        for row in content.split('\n'):
             end_name = row.rindex('-')
             name = row[:end_name].replace('-', '')
             sector = int(row[end_name + 1:row.rindex('[')])
@@ -27,17 +27,17 @@ class Day4(Day):
         count_chrs: list[tuple[int, str]] = sorted([(v, k) for k, v in chrs.items()], key=lambda n: (-n[0], n[1]))
         return ''.join([b for _, b in count_chrs[:5]]) == checksum
 
-    def part1(self) -> int:
+    def part1(self, parsed_content: list[tuple[str, int, str]]) -> int:
         tot = 0
-        for name, room, checksum in self.data_p1:
+        for name, room, checksum in parsed_content:
             if self.is_valid(name, checksum):
                 tot += room
         return tot
 
-    def part2(self) -> int:
-        for name, room, checksum in self.parse_content():
+    def part2(self, parsed_content: list[tuple[str, int, str]]) -> int:
+        for name, room, checksum in parsed_content:
             if self.is_valid(name, checksum):
                 decrypted = rot13(name, room)
                 if decrypted.startswith('north'):
                     return room
-        return -1
+        raise Exception

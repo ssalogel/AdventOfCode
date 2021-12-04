@@ -2,15 +2,16 @@ from AdventUtils.Day import Day
 import json
 
 
+# TODO better typing hints
 class Day12(Day):
     def __init__(self, content=None):
         super().__init__(day=12, year=2015, content=content)
 
-    def parse_content(self):
-        return json.loads(self.content)
+    def parse_content(self, content: str):
+        return json.loads(content)
 
-    def part1(self):
-        iterables = [self.data_p1]
+    def part1(self, parsed_content) -> int:
+        iterables = [parsed_content]
         res = 0
         while len(iterables) > 0:
             iterable = iterables.pop()
@@ -32,8 +33,8 @@ class Day12(Day):
                         res += elem
         return res
 
-    def part2(self):
-        iterables = [self.data_p1]
+    def part2(self, parsed_content) -> int:
+        iterables = [parsed_content]
         res = 0
         while len(iterables) > 0:
             iterable = iterables.pop()

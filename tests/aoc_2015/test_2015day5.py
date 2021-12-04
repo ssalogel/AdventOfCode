@@ -72,16 +72,19 @@ def repeat_letter_with_one_between(test_input, expected):
 
 def test_part1():
     test_input = '\n'.join(["ugknbfddgicrmopn", "aaa", "jchzalrnumimnmhp", "haegwjzuvuyypxyu", "dvszwmarrgswjxmb"])
-    assert Day5(content=test_input).part1() == 2
+    d = Day5(content="test")
+    assert d.part1(d.parse_content(test_input)) == 2
 
 
 def test_part2():
     test_input = '\n'.join(["aaa", "qjhvhtzxzqqjkmpb", "xxyxx", "uurcxstgmygtbstg", "ieodomkazucvgmuy"])
-    assert Day5(content=test_input).part2() == 2
+    d = Day5(content="test")
+    assert d.part2(d.parse_content(test_input)) == 2
 
 
 def test_actual_input():
     with open('./tests/aoc_2015/data/2015day5.txt', 'r') as file:
         content = file.read().strip()
-    assert Day5(content=content).part1() == 236
-    assert Day5(content=content).part2() == 51
+    d = Day5(content="test")
+    assert d.part1(d.parse_content(content)) == 236
+    assert d.part2(d.parse_content(content)) == 51

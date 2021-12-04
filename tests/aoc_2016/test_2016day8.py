@@ -6,10 +6,12 @@ def test_part1():
 rotate column x=1 by 1
 rotate row y=0 by 4
 rotate column x=1 by 1"""
-    assert Day8(content=content).part1() == 6
+    d = Day8(content="test")
+    assert d.part1(d.parse_content(content)) == 6
 
 
 def test_actual_input():
     with open('./tests/aoc_2016/data/2016day8.txt', 'r') as file:
         content = file.read().strip()
-    assert Day8(content=content).part1() == 106
+    d = Day8(content="test")
+    assert d.part1(d.parse_content(content)) == 106

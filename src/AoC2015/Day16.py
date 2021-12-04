@@ -1,6 +1,9 @@
 from AdventUtils.Day import Day
 
 
+Sue = tuple[str, dict[str, int]]
+
+
 class Day16(Day):
     def __init__(self, content=None):
         super().__init__(day=16, year=2015, content=content)
@@ -17,12 +20,12 @@ class Day16(Day):
             'perfumes': 1,
         }
 
-    def parse_content(self):
-        data = self.content.strip().replace(',', '').replace(':', '').split('\n')
+    def parse_content(self, content: str) -> list[Sue]:
+        data = content.strip().replace(',', '').replace(':', '').split('\n')
         return [(d[1], {d[2]: int(d[3]), d[4]: int(d[5]), d[6]: int(d[7])}) for d in [d.split(' ') for d in data]]
 
-    def part1(self):
-        for aunt, info in self.data_p1:
+    def part1(self, parsed_content: list[Sue]) -> str:
+        for aunt, info in parsed_content:
             for k, v in info.items():
                 if self.truth[k] != v:
                     break
@@ -30,9 +33,9 @@ class Day16(Day):
                 return aunt
         raise Exception
 
-    def part2(self):
+    def part2(self, parsed_content: list[Sue]) -> str:
         res = []
-        for aunt, info in self.data_p1:
+        for aunt, info in parsed_content:
             for k, v in info.items():
                 if k == 'cats' or k == 'trees':
                     if self.truth[k] >= v:

@@ -8,15 +8,18 @@ import pytest
     ("R5, L5, R5, R3", 12)
 ])
 def test_part1(test_input, expected):
-    assert Day1(content=test_input).part1() == expected
+    d = Day1(content="test")
+    assert d.part1(d.parse_content(test_input)) == expected
 
 
 def test_part2():
-    assert Day1(content="R8, R4, R4, R8").part2() == 4
+    d = Day1(content="test")
+    assert d.part2(d.parse_content(content="R8, R4, R4, R8")) == 4
 
 
 def test_actual_input():
     with open('./tests/aoc_2016/data/2016day1.txt', 'r') as file:
         content = file.read().strip()
-    assert Day1(content=content).part1() == 291
-    assert Day1(content=content).part2() == 159
+    d = Day1(content="test")
+    assert d.part1(d.parse_content(content)) == 291
+    assert d.part2(d.parse_content(content)) == 159

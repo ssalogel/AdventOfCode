@@ -10,7 +10,8 @@ import pytest
 
 ])
 def test_parse_content(test_input, expected):
-    assert Day6(content=test_input).parse_content() == expected
+    d = Day6(content="test")
+    assert d.parse_content(test_input) == expected
 
 
 def test_apply():

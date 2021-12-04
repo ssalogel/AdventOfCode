@@ -14,11 +14,13 @@ Carol would gain 55 happiness units by sitting next to David.
 David would gain 46 happiness units by sitting next to Alice.
 David would lose 7 happiness units by sitting next to Bob.
 David would gain 41 happiness units by sitting next to Carol."""
-    assert Day13(content=content).part1() == 330
+    d = Day13(content="test")
+    assert d.part1(d.parse_content(content)) == 330
 
 
 def test_actual_input():
     with open('./tests/aoc_2015/data/2015day13.txt', 'r') as file:
         content = file.read().strip()
-    assert Day13(content=content).part1() == 618
-    assert Day13(content=content).part2() == 601
+    d = Day13(content="test")
+    assert d.part1(d.parse_content(content)) == 618
+    assert d.part2(d.parse_content(content)) == 601

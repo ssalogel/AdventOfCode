@@ -6,8 +6,8 @@ class Day10(Day):
     def __init__(self, content=None):
         super().__init__(day=10, year=2016, content=content)
 
-    def parse_content(self) -> list[str]:
-        return sorted(self.content.split('\n'))
+    def parse_content(self, content: str) -> list[str]:
+        return sorted(content.split('\n'))
 
     def create_start(self, states: list[str]) -> tuple[dict[int, list[int]], dict[int, tuple[tuple[str, int], tuple[str, int]]]]:
         bots = defaultdict(list)
@@ -21,8 +21,8 @@ class Day10(Day):
                 bots[int(info[-1])].append(int(info[1]))
         return bots, pipeline
 
-    def part1(self) -> int:
-        bots, pipeline = self.create_start(self.data_p1)
+    def part1(self, parsed_content: list[str]) -> int:
+        bots, pipeline = self.create_start(parsed_content)
         outputs = [0] * 100
         while bots:
             for bot, v in dict(bots).items():
@@ -43,8 +43,8 @@ class Day10(Day):
                         bots[high_dest[1]].append(high)
         return -1
 
-    def part2(self) -> int:
-        bots, pipeline = self.create_start(self.data_p1)
+    def part2(self, parsed_content: list[str]) -> int:
+        bots, pipeline = self.create_start(parsed_content)
         outputs = [0] * 100
         while bots:
             for bot, v in dict(bots).items():

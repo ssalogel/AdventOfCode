@@ -64,7 +64,7 @@ def magic_divisors(n: int) -> list[int]:
     return r
 
 
-def get_subsets_min_len_sum_target(target: int, nums):
+def get_subsets_min_len_sum_target(target: int, nums: list[int]):
     for i in range(len(nums)):
         groups = [c for c in combinations(nums, i) if sum(c) == target]
         if groups:

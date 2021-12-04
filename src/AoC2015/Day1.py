@@ -5,12 +5,12 @@ class Day1(Day):
     def __init__(self, content=None):
         super().__init__(day=1, year=2015, content=content)
 
-    def parse_content(self) -> str:
-        return self.content
+    def parse_content(self, content: str) -> str:
+        return content
 
-    def part1(self) -> int:
+    def part1(self, parsed_content: str) -> int:
         floor = 0
-        for c in self.data_p1:
+        for c in parsed_content:
             if c == '(':
                 floor += 1
             elif c == ')':
@@ -19,9 +19,9 @@ class Day1(Day):
                 raise NotImplementedError
         return floor
 
-    def part2(self) -> int:
+    def part2(self, parsed_content: str) -> int:
         floor = 0
-        for i, c in enumerate(self.data_p1):
+        for i, c in enumerate(parsed_content):
             if c == '(':
                 floor += 1
             elif c == ')':
