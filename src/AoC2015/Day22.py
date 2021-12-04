@@ -1,5 +1,5 @@
 from AdventUtils.Day import Day
-from typing import Union
+from sys import maxsize
 
 
 class Day22(Day):
@@ -10,7 +10,7 @@ class Day22(Day):
         hp, dmg = content.replace('Hit Points: ', '').replace('Damage: ', '').split('\n')
         return int(hp), int(dmg)
 
-    def sim(self, boss_hp: int, boss_att: int, hp: int, mana: int, my_turn: bool, p_t: int, r_t: int, s_t: int, depth: int, hard: bool) -> Union[int, float]:
+    def sim(self, boss_hp: int, boss_att: int, hp: int, mana: int, my_turn: bool, p_t: int, r_t: int, s_t: int, depth: int, hard: bool) -> int:
         if hard and my_turn:
             hp -= 1
         if boss_hp <= 0:
@@ -19,7 +19,7 @@ class Day22(Day):
         hp = min(hp, 50)
 
         if depth == 0 or hp <= 0:
-            return float('inf')
+            return maxsize
 
         ns_t = max(0, s_t - 1)
         np_t = max(0, p_t - 1)
@@ -51,10 +51,10 @@ class Day22(Day):
             if r_t > 0:
                 mana += 101
 
-            mi = float('inf')
+            mi = maxsize
 
             if mana < 53:
-                return float('inf')
+                return maxsize
 
             if mana >= 53:
                 mi = min(mi, 53 + self.sim(hp=hp, mana=mana - 53, boss_hp=boss_hp - 4, boss_att=boss_att, s_t=ns_t,
@@ -78,10 +78,10 @@ class Day22(Day):
 
             return mi
 
-    def part1(self, parsed_content: tuple[int, int]) -> Union[int, float]:
+    def part1(self, parsed_content: tuple[int, int]) -> int:
         return self.sim(boss_hp=parsed_content[0], boss_att=parsed_content[1], hp=50, mana=500, my_turn=True,
                         p_t=0, r_t=0, s_t=0, depth=23, hard=False)
 
-    def part2(self, parsed_content: tuple[int, int]) -> Union[int, float]:
+    def part2(self, parsed_content: tuple[int, int]) -> int:
         return self.sim(boss_hp=parsed_content[0], boss_att=parsed_content[1], hp=50, mana=500, my_turn=True,
                         p_t=0, r_t=0, s_t=0, depth=23, hard=True)
