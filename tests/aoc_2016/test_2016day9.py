@@ -11,7 +11,8 @@ import pytest
     ("X(8x2)(3x3)ABCY", 18)
 ])
 def test_part1(test_input, expected):
-    assert Day9(content=test_input).part1() == expected
+    d = Day9(content="test")
+    assert d.part1(d.parse_content(test_input)) == expected
 
 
 @pytest.mark.parametrize("test_input,expected", [
@@ -21,11 +22,13 @@ def test_part1(test_input, expected):
     ("(25x3)(3x3)ABC(2x3)XY(5x2)PQRSTX(18x9)(3x2)TWO(5x7)SEVEN", 445),
 ])
 def test_part2(test_input, expected):
-    assert Day9(content=test_input).part2() == expected
+    d = Day9(content="test")
+    assert d.part2(d.parse_content(test_input)) == expected
 
 
 def test_actual_input():
     with open('./tests/aoc_2016/data/2016day9.txt', 'r') as file:
         content = file.read().strip()
-    assert Day9(content=content).part1() == 120765
-    assert Day9(content=content).part2() == 11658395076
+    d = Day9(content="test")
+    assert d.part1(d.parse_content(content)) == 120765
+    assert d.part2(d.parse_content(content)) == 11658395076

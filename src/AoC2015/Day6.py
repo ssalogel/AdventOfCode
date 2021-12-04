@@ -1,19 +1,23 @@
 from AdventUtils.Day import Day
 from AdventUtils.Grid2D import Grid2DBool, Grid2Dint
 
-from typing import Tuple, Protocol, Any
+from typing import Protocol, Any
+
+
+Coord = tuple[int, int]
+Instruct = tuple[str, Coord, Coord]
 
 
 class Grid(Protocol):
-    grid: dict[Tuple[int, int], Any]
+    grid: dict[Coord, Any]
 
-    def turn_on(self, pos: Tuple[int, int]):
+    def turn_on(self, pos: Coord):
         pass
 
-    def turn_off(self, pos: Tuple[int, int]):
+    def turn_off(self, pos: Coord):
         pass
 
-    def toggle(self, pos: Tuple[int, int]):
+    def toggle(self, pos: Coord):
         pass
 
 
@@ -21,8 +25,8 @@ class Day6(Day):
     def __init__(self, content=None):
         super().__init__(day=6, year=2015, content=content)
 
-    def parse_content(self) -> list[tuple[str, tuple[int, int], tuple[int, int]]]:
-        data = self.content.replace('turn ', '').split('\n')
+    def parse_content(self, content: str) -> list[Instruct]:
+        data = content.replace('turn ', '').split('\n')
         res = []
 
         def make_coord(coord: str) -> tuple[int, int]:
@@ -48,12 +52,12 @@ class Day6(Day):
                         raise NotImplementedError
         return grid
 
-    def part1(self) -> int:
+    def part1(self, parsed_content: list[Instruct]) -> int:
         grid: Grid = Grid2DBool()
-        grid = self.apply(self.data_p1, grid)
+        grid = self.apply(parsed_content, grid)
         return sum(grid.grid.values())
 
-    def part2(self) -> int:
+    def part2(self, parsed_content: list[Instruct]) -> int:
         grid: Grid = Grid2Dint()
-        grid = self.apply(self.data_p2, grid)
+        grid = self.apply(parsed_content, grid)
         return sum(grid.grid.values())

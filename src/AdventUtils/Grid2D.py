@@ -9,16 +9,16 @@ class Position2D:
     x: int = 0
     y: int = 0
 
-    def move_up(self, magnitude=1):
+    def move_up(self, magnitude=1) -> 'Position2D':
         return Position2D(self.x, self.y + magnitude)
 
-    def move_down(self, magnitude=1):
+    def move_down(self, magnitude=1) -> 'Position2D':
         return Position2D(self.x, self.y - magnitude)
 
-    def move_left(self, magnitude=1):
+    def move_left(self, magnitude=1) -> 'Position2D':
         return Position2D(self.x - magnitude, self.y)
 
-    def move_right(self, magnitude=1):
+    def move_right(self, magnitude=1) -> 'Position2D':
         return Position2D(self.x + magnitude, self.y)
 
 

@@ -8,11 +8,13 @@ import pytest
     ('120', 6)
 ])
 def test_part1(test_input, expected):
-    assert Day20(content=test_input).part1() == expected
+    d = Day20(content="test")
+    assert d.part1(d.parse_content(test_input)) == expected
 
 
 def test_actual_input():
     with open('./tests/aoc_2015/data/2015day20.txt', 'r') as file:
         content = file.read().strip()
-    assert Day20(content=content).part1() == 786240
-    assert Day20(content=content).part2() == 831600
+    d = Day20(content="test")
+    assert d.part1(d.parse_content(content)) == 786240
+    assert d.part2(d.parse_content(content)) == 831600

@@ -5,12 +5,12 @@ class Day19(Day):
     def __init__(self, content=None):
         super().__init__(day=19, year=2015, content=content)
 
-    def parse_content(self) -> tuple[list[list[str]], str]:
-        rules, mol = self.content.strip().split('\n\n')
+    def parse_content(self, content: str) -> tuple[list[list[str]], str]:
+        rules, mol = content.strip().split('\n\n')
         return [d.split(' => ') for d in rules.strip().split('\n')], mol
 
-    def part1(self):
-        rules, mol = self.data_p1
+    def part1(self, parsed_content: tuple[list[list[str]], str]) -> int:
+        rules, mol = parsed_content
         results = set()
         for src, dest in rules:
             part_mol = mol.split(src)
@@ -19,7 +19,7 @@ class Day19(Day):
                 results.add(src.join(tmp_mol))
         return len(results)
 
-    def part2(self):
+    def part2(self, parsed_content: tuple[list[list[str]], str]) -> int:
         """
         rules:
         X -> YZ         == 1 reduction
@@ -37,7 +37,7 @@ class Day19(Day):
                 same logic as above, each Y takes right next w/
                 len(mol) - count(Rn) - count(Ar) - 2(count(Y)) - 1 = steps
         """
-        _, mol = self.data_p2
+        _, mol = parsed_content
         valid_id = {'Al', 'B', 'Ca', 'F', 'H', 'Mg', 'N', 'O', 'P', 'Si', 'Th', 'Ti', 'e', 'Rn', 'Ar', 'Y'}
         tot_atom = sum(mol.count(a) for a in valid_id)
         steps = tot_atom - mol.count('Rn') - mol.count('Ar') - (2 * mol.count('Y')) - 1

@@ -6,8 +6,8 @@ class Day18(Day):
     def __init__(self, content=None):
         super().__init__(day=18, year=2015, content=content)
 
-    def parse_content(self) -> list[list[bool]]:
-        data = self.content.strip().split('\n')
+    def parse_content(self, content: str) -> list[list[bool]]:
+        data = content.strip().split('\n')
         return [list(map(lambda x: x == '#', d)) for d in data]
 
     def create_board(self, starting_board: list[list[bool]]) -> FullBoardConway2D:
@@ -20,14 +20,14 @@ class Day18(Day):
         game.new_board(on_pos, height=len(starting_board), width=len(starting_board[0]))
         return game
 
-    def part1(self):
-        game = self.create_board(self.data_p1)
+    def part1(self, parsed_content: list[list[bool]]) -> int:
+        game = self.create_board(parsed_content)
         for i in range(100):
             game.step()
         return len(game.board)
 
-    def part2(self):
-        game = self.create_board(self.data_p2)
+    def part2(self, parsed_content: list[list[bool]]) -> int:
+        game = self.create_board(parsed_content)
         stuck_on = set([(0, 0), (0, game.height-1), (game.width-1, 0), (game.width-1, game.height-1)])
         game.turn_on(stuck_on)
         for i in range(100):

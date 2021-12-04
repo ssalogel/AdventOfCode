@@ -6,7 +6,8 @@ def test_part1():
 RRDDD
 LURDL
 UUUUD"""
-    assert Day2(content=content).part1() == "1985"
+    d = Day2(content="test")
+    assert d.part1(d.parse_content(content)) == "1985"
 
 
 def test_part2():
@@ -14,11 +15,13 @@ def test_part2():
 RRDDD
 LURDL
 UUUUD"""
-    assert Day2(content=content).part2() == '5DB3'
+    d = Day2(content="test")
+    assert d.part2(d.parse_content(content)) == '5DB3'
 
 
 def test_actual_input():
     with open('./tests/aoc_2016/data/2016day2.txt', 'r') as file:
         content = file.read().strip()
-    assert Day2(content=content).part1() == "82958"
-    assert Day2(content=content).part2() == "B3DB8"
+    d = Day2(content="test")
+    assert d.part1(d.parse_content(content)) == "82958"
+    assert d.part2(d.parse_content(content)) == "B3DB8"

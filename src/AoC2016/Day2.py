@@ -6,13 +6,13 @@ class Day2(Day):
     def __init__(self, content=None):
         super().__init__(day=2, year=2016, content=content)
 
-    def parse_content(self) -> list[str]:
-        return self.content.strip().split('\n')
+    def parse_content(self, content: str) -> list[str]:
+        return content.strip().split('\n')
 
-    def part1(self) -> str:
+    def part1(self, parsed_content: list[str]) -> str:
         res = []
         num = 5
-        for num_instr in self.data_p1:
+        for num_instr in parsed_content:
             for instr in num_instr:
                 if instr == 'U':
                     if num > 3:
@@ -29,7 +29,7 @@ class Day2(Day):
             res.append(num)
         return ''.join([str(r) for r in res])
 
-    def part2(self) -> str:
+    def part2(self, parsed_content: list[str]) -> str:
         keypad = {
             Position2D(2, 4): '1',
             Position2D(1, 3): '2',
@@ -47,7 +47,7 @@ class Day2(Day):
         }
         pos = Position2D(0, 2)
         res = []
-        for num_instr in self.data_p1:
+        for num_instr in parsed_content:
             for instr in num_instr:
                 if instr == 'U':
                     new = pos.move_up()

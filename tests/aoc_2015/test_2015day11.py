@@ -43,5 +43,6 @@ def test_get_next_valid_pass(test_input, expected):
 def test_actual_input():
     with open('./tests/aoc_2015/data/2015day11.txt', 'r') as file:
         content = file.read().strip()
-    assert Day11(content=content).part1() == "hxbxxyzz"
-    assert Day11(content=content).part2() == "hxcaabcc"
+    d = Day11(content="test")
+    assert d.part1(d.parse_content(content)) == "hxbxxyzz"
+    assert d.part2(d.parse_content(content)) == "hxcaabcc"

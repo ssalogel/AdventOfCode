@@ -7,11 +7,13 @@ H => OH
 O => HH
 
 HOH"""
-    assert Day19(content=content).part1() == 4
+    d = Day19(content="test")
+    assert d.part1(d.parse_content(content)) == 4
 
 
 def test_actual_input():
     with open('./tests/aoc_2015/data/2015day19.txt', 'r') as file:
         content = file.read().strip()
-    assert Day19(content=content).part1() == 576
-    assert Day19(content=content).part2() == 207
+    d = Day19(content="test")
+    assert d.part1(d.parse_content(content)) == 576
+    assert d.part2(d.parse_content(content)) == 207

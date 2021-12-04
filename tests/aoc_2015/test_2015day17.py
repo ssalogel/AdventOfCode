@@ -7,7 +7,8 @@ def test_part1():
 10
 5
 5"""
-    assert Day17(content=content, target=25).part1() == 4
+    d = Day17(content="test", target=25)
+    assert d.part1(d.parse_content(content=content)) == 4
 
 
 def test_part2():
@@ -16,11 +17,13 @@ def test_part2():
 10
 5
 5"""
-    assert Day17(content=content, target=25).part2() == 3
+    d = Day17(content="test", target=25)
+    assert d.part2(d.parse_content(content=content)) == 3
 
 
 def test_actual_input():
     with open('./tests/aoc_2015/data/2015day17.txt', 'r') as file:
         content = file.read().strip()
-    assert Day17(content=content).part1() == 654
-    assert Day17(content=content).part2() == 57
+    d = Day17(content="test")
+    assert d.part1(d.parse_content(content)) == 654
+    assert d.part2(d.parse_content(content)) == 57

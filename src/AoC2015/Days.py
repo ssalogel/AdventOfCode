@@ -36,4 +36,5 @@ def get_fast_days():
     fast.remove(Day6)
     fast.remove(Day10)
     fast.remove(Day20)
+    fast.remove(Day22)
     return fast

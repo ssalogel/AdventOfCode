@@ -5,8 +5,8 @@ class Day7(Day):
     def __init__(self, content=None):
         super().__init__(day=7, year=2016, content=content)
 
-    def parse_content(self) -> list[tuple[list[str], list[str]]]:
-        adresses = self.content.strip().replace(']', '[').split('\n')
+    def parse_content(self, content: str) -> list[tuple[list[str], list[str]]]:
+        adresses = content.strip().replace(']', '[').split('\n')
         inter_ip_hyper = [ad.split('[') for ad in adresses]
         return [(ad[0::2], ad[1::2]) for ad in inter_ip_hyper]
 
@@ -35,8 +35,8 @@ class Day7(Day):
     def is_valid_ip(self, ip: tuple[list[str], list[str]]) -> bool:
         return any(map(self.has_abba, ip[0])) and not any(map(self.has_abba, ip[1]))
 
-    def part1(self) -> int:
-        return sum(map(self.is_valid_ip, self.data_p1))
+    def part1(self, parsed_content: list[tuple[list[str], list[str]]]) -> int:
+        return sum(map(self.is_valid_ip, parsed_content))
 
-    def part2(self) -> int:
-        return sum(self.check_bab(hyper, self.get_aba(super)) for super, hyper in self.data_p2)
+    def part2(self, parsed_content: list[tuple[list[str], list[str]]]) -> int:
+        return sum(self.check_bab(hyper, self.get_aba(super)) for super, hyper in parsed_content)

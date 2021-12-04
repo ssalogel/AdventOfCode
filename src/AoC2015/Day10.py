@@ -5,8 +5,8 @@ class Day10(Day):
     def __init__(self, content=None):
         super().__init__(day=10, year=2015, content=content)
 
-    def parse_content(self) -> str:
-        return self.content.strip()
+    def parse_content(self, content: str) -> str:
+        return content.strip()
 
     def step(self, string: str) -> str:
         count = 0
@@ -21,14 +21,14 @@ class Day10(Day):
         res += f"{str(count + 1)}{string[-1]}"
         return res
 
-    def part1(self) -> int:
-        res = self.data_p1
+    def part1(self, parsed_content: str) -> int:
+        res = parsed_content
         for _ in range(40):
             res = self.step(res)
         return len(res)
 
-    def part2(self) -> int:
-        res = self.data_p2
+    def part2(self, parsed_content: str) -> int:
+        res = parsed_content
         for _ in range(50):
             res = self.step(res)
         return len(res)

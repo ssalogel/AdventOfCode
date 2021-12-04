@@ -8,5 +8,6 @@ def test_play():
 def test_actual_input():
     with open('./tests/aoc_2015/data/2015day21.txt', 'r') as file:
         content = file.read().strip()
-    assert Day21(content=content).part1() == 91
-    assert Day21(content=content).part2() == 158
+    d = Day21(content="test")
+    assert d.part1(d.parse_content(content)) == 91
+    assert d.part2(d.parse_content(content)) == 158

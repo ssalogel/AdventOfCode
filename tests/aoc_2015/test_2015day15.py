@@ -20,5 +20,6 @@ def test_part2():
 def test_actual_input():
     with open('./tests/aoc_2015/data/2015day15.txt', 'r') as file:
         content = file.read().strip()
-    assert Day15(content=content).part1() == 18965440
-    assert Day15(content=content).part2() == 15862900
+    d = Day15(content="test")
+    assert d.part1(d.parse_content(content)) == 18965440
+    assert d.part2(d.parse_content(content)) == 15862900

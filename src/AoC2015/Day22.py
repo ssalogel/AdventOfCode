@@ -1,14 +1,16 @@
 from AdventUtils.Day import Day
+from typing import Union
 
 
 class Day22(Day):
     def __init__(self, content=None):
         super().__init__(day=22, year=2015, content=content)
 
-    def parse_content(self):
-        return tuple([int(d) for d in self.content.replace('Hit Points: ', '').replace('Damage: ', '').split('\n')])
+    def parse_content(self, content: str) -> tuple[int, int]:
+        hp, dmg = content.replace('Hit Points: ', '').replace('Damage: ', '').split('\n')
+        return int(hp), int(dmg)
 
-    def sim(self, boss_hp, boss_att, hp, mana, my_turn, p_t, r_t, s_t, depth, hard):
+    def sim(self, boss_hp: int, boss_att: int, hp: int, mana: int, my_turn: bool, p_t: int, r_t: int, s_t: int, depth: int, hard: bool) -> Union[int, float]:
         if hard and my_turn:
             hp -= 1
         if boss_hp <= 0:
@@ -76,10 +78,10 @@ class Day22(Day):
 
             return mi
 
-    def part1(self):
-        return self.sim(boss_hp=self.data_p1[0], boss_att=self.data_p1[1], hp=50, mana=500, my_turn=True,
-                        p_t=0, r_t=0, s_t=0, depth=20, hard=False)
+    def part1(self, parsed_content: tuple[int, int]) -> Union[int, float]:
+        return self.sim(boss_hp=parsed_content[0], boss_att=parsed_content[1], hp=50, mana=500, my_turn=True,
+                        p_t=0, r_t=0, s_t=0, depth=23, hard=False)
 
-    def part2(self):
-        return self.sim(boss_hp=self.data_p2[0], boss_att=self.data_p2[1], hp=50, mana=500, my_turn=True,
-                        p_t=0, r_t=0, s_t=0, depth=20, hard=True)
+    def part2(self, parsed_content: tuple[int, int]) -> Union[int, float]:
+        return self.sim(boss_hp=parsed_content[0], boss_att=parsed_content[1], hp=50, mana=500, my_turn=True,
+                        p_t=0, r_t=0, s_t=0, depth=23, hard=True)

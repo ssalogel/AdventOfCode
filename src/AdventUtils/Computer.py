@@ -18,7 +18,7 @@ class Computer:
     def set_register(self, reg: str, value: int):
         self.registers[reg] = value
 
-    def run(self):
+    def run(self) -> dict[str, int]:
         while 0 <= self.counter < len(self.instructions):
             instr, args = self.instructions[self.counter]
             self.counter, self.registers = self.instruction_set[instr](args, self.counter, self.registers)

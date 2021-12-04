@@ -3,18 +3,18 @@ from AdventUtils.Crypto import find_hash
 
 
 class Day5(Day):
-    def __init__(self, content="ffykfhsq"):
+    def __init__(self, content="abbhdwsy"):
         super().__init__(day=5, year=2016, content=content)
 
-    def parse_content(self) -> str:
-        return self.content
+    def parse_content(self, content: str) -> str:
+        return content
 
-    def part1(self) -> str:
-        hashes = find_hash(self.data_p1, '00000', 8)
+    def part1(self, parsed_content: str) -> str:
+        hashes = find_hash(parsed_content, '00000', 8)
         return ''.join([c[5] for _, c in hashes])
 
-    def part2(self) -> str:
-        hashes = find_hash(self.data_p2, '00000', 36)
+    def part2(self, parsed_content: str) -> str:
+        hashes = find_hash(parsed_content, '00000', 36)
         keys = {}
         for _, h in hashes:
             key = int(h[5], 16)

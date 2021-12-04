@@ -6,12 +6,12 @@ class Day25(Day):
         super().__init__(day=25, year=2015, content=content)
         self.start = 20151125
 
-    def parse_content(self):
-        data = self.content.replace('.', '').replace(',', '').split(' ')
+    def parse_content(self, content: str) -> tuple[int, int]:
+        data = content.replace('.', '').replace(',', '').split(' ')
         return int(data[-1]), int(data[-3])
 
-    def part1(self):
-        x_target, y_target = self.data_p1
+    def part1(self, parsed_content: tuple[int, int]) -> int:
+        x_target, y_target = parsed_content
         x, y = 1, 1
         num = self.start
         while x != x_target or y != y_target:
@@ -22,5 +22,5 @@ class Day25(Day):
             num = (num * 252533) % 33554393
         return num
 
-    def part2(self):
+    def part2(self, parsed_content: tuple[int, int]) -> str:
         return "WINNER!"

@@ -9,7 +9,8 @@ import pytest
 
 ])
 def test_part1(test_input, expected):
-    assert Day3(content=test_input).part1() == expected
+    d = Day3(content="test")
+    assert d.part1(d.parse_content(test_input)) == expected
 
 
 @pytest.mark.parametrize("test_input,expected", [
@@ -18,11 +19,13 @@ def test_part1(test_input, expected):
     ("^v^v^v^v^v", 11)
 ])
 def test_part2(test_input, expected):
-    assert Day3(content=test_input).part2() == expected
+    d = Day3(content="test")
+    assert d.part2(d.parse_content(test_input)) == expected
 
 
 def test_actual_input():
     with open('./tests/aoc_2015/data/2015day3.txt', 'r') as file:
         content = file.read().strip()
-    assert Day3(content=content).part1() == 2081
-    assert Day3(content=content).part2() == 2341
+    d = Day3(content="test")
+    assert d.part1(d.parse_content(content)) == 2081
+    assert d.part2(d.parse_content(content)) == 2341

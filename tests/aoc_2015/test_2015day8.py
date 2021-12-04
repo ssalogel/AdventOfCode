@@ -37,7 +37,8 @@ def test_part1():
 "abc"
 "aaa\"aaa"
 "\x27"'''
-    assert Day8(content=content).part1() == 12
+    d = Day8(content="test")
+    assert d.part1(d.parse_content(content)) == 12
 
 
 def test_part2():
@@ -45,11 +46,13 @@ def test_part2():
 "abc"
 "aaa\"aaa"
 "\x27"'''
-    assert Day8(content=content).part2() == 19
+    d = Day8(content="test")
+    assert d.part2(d.parse_content(content)) == 19
 
 
 def test_actual_input():
     with open('./tests/aoc_2015/data/2015day8.txt', 'r') as file:
         content = file.read().strip()
-    assert Day8(content=content).part1() == 1350
-    assert Day8(content=content).part2() == 2085
+    d = Day8(content="test")
+    assert d.part1(d.parse_content(content)) == 1350
+    assert d.part2(d.parse_content(content)) == 2085

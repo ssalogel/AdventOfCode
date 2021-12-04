@@ -5,8 +5,8 @@ class Day11(Day):
     def __init__(self, content=None):
         super().__init__(day=11, year=2015, content=content)
 
-    def parse_content(self) -> str:
-        return self.content.strip()
+    def parse_content(self, content: str) -> str:
+        return content.strip()
 
     @staticmethod
     def has_three_sequence(num_pass: list[int]) -> bool:
@@ -55,13 +55,13 @@ class Day11(Day):
             num_pass = cls.next_pass(num_pass)
         return num_pass
 
-    def part1(self) -> str:
-        num_pass = list(map(ord, self.data_p1))
+    def part1(self, parsed_content: str) -> str:
+        num_pass = list(map(ord, parsed_content))
         num_pass = self.get_next_valid_pass(num_pass)
         return ''.join(map(chr, num_pass))
 
-    def part2(self) -> str:
-        num_pass = list(map(ord, self.data_p2))
+    def part2(self, parsed_content: str) -> str:
+        num_pass = list(map(ord, parsed_content))
         num_pass = self.get_next_valid_pass(num_pass)
         num_pass = self.next_pass(num_pass)
         num_pass = self.get_next_valid_pass(num_pass)
