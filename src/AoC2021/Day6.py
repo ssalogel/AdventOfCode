@@ -1,5 +1,4 @@
 from AdventUtils.Day import Day
-from collections import Counter
 
 
 class Day6(Day):
@@ -28,11 +27,3 @@ class Day6(Day):
         for time in parsed_content:
             amount[time] += 1
         return sum(self.spawn_fishes(amount, 256))
-
-
-if __name__ == '__main__':
-    content = """3,4,3,1,2
-"""
-    d = Day6(content=content)
-    print(d.part1(parsed_content=d.parse_content(content=content)))
-    print(d.part2(parsed_content=d.parse_content(content=content)))
