@@ -7,7 +7,7 @@ class Bingo:
         self.boardsize = len(board)
         self.board = [num for row in board for num in row]
 
-    def check_win(self) -> bool:
+    def check_win_no_diag(self) -> bool:
         for start in range(self.boardsize):
             row = self.board[start*self.boardsize:start*self.boardsize + self.boardsize]
             if all(map(lambda x: self.numbers[x], row)):

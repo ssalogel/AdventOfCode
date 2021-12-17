@@ -32,7 +32,7 @@ class Day4(Day):
                 bingo.add_number(draw)
             winners = []
             for bingo in bingos:
-                if bingo.check_win():
+                if bingo.check_win_no_diag():
                     winners.append(bingo)
             if winners:
                 return sum(winners[0].get_numbers_not_found()) * draw
@@ -48,7 +48,7 @@ class Day4(Day):
                 bingo.add_number(draw)
             winners = []
             for bingo in bingos:
-                if bingo.check_win():
+                if bingo.check_win_no_diag():
                     winners.append(bingo)
                     if len(bingos) == 1:
                         return sum(bingos[0].get_numbers_not_found()) * draw
