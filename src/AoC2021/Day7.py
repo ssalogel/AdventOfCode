@@ -1,5 +1,4 @@
 from AdventUtils.Day import Day
-from sys import maxsize
 from math import floor, ceil
 
 
