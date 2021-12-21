@@ -1,4 +1,4 @@
-from AdventUtils.Equation_solver import Solver
+from src.AdventUtils.Equation_solver import Solver
 
 
 def set_up_solver() -> Solver:

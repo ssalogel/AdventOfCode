@@ -1,4 +1,4 @@
-from AdventUtils.holders import Box
+from src.AdventUtils.holders import Box
 
 
 def test_box_get_smallest_size():

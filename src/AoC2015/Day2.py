@@ -1,5 +1,5 @@
-from AdventUtils.Day import Day
-from AdventUtils.holders import Box
+from src.AdventUtils.Day import Day
+from src.AdventUtils.holders import Box
 
 
 class Day2(Day):

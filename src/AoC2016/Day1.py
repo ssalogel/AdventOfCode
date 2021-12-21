@@ -1,5 +1,5 @@
-from AdventUtils.Day import Day
-from AdventUtils.Grid2D import WalkingPosition
+from src.AdventUtils.Day import Day
+from src.AdventUtils.Grid2D import WalkingPosition
 
 
 class Day1(Day):

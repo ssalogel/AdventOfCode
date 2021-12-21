@@ -1,4 +1,4 @@
-from AoC2015.Day21 import Day21
+from src.AoC2015.Day21 import Day21
 
 
 def test_play():

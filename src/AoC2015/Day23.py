@@ -1,5 +1,5 @@
-from AdventUtils.Day import Day
-from AdventUtils.Computer import Computer, Instructions
+from src.AdventUtils.Day import Day
+from src.AdventUtils.Computer import Computer, Instructions
 
 
 class Day23(Day):

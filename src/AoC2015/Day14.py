@@ -1,4 +1,4 @@
-from AdventUtils.Day import Day
+from src.AdventUtils.Day import Day
 
 
 Reindeer = tuple[str, int, int, int]

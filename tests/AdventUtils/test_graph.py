@@ -1,4 +1,4 @@
-from AdventUtils.Graph import Graph
+from src.AdventUtils.Graph import Graph
 
 
 def test_default_values():

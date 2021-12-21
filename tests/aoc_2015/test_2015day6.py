@@ -1,5 +1,5 @@
-from AoC2015.Day6 import Day6, Grid
-from AdventUtils.Grid2D import Grid2DBool
+from src.AoC2015.Day6 import Day6, Grid
+from src.AdventUtils.Grid2D import Grid2DBool
 import pytest
 
 

@@ -1,4 +1,4 @@
-from AoC2015.Day8 import Day8
+from src.AoC2015.Day8 import Day8
 import pytest
 
 

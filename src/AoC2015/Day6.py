@@ -1,5 +1,5 @@
-from AdventUtils.Day import Day
-from AdventUtils.Grid2D import Grid2DBool, Grid2Dint
+from src.AdventUtils.Day import Day
+from src.AdventUtils.Grid2D import Grid2DBool, Grid2Dint
 
 from typing import Protocol, Any
 

@@ -1,5 +1,5 @@
-from AdventUtils.Day import Day
-from AdventUtils.Crypto import find_hash
+from src.AdventUtils.Day import Day
+from src.AdventUtils.Crypto import find_hash
 
 
 class Day5(Day):

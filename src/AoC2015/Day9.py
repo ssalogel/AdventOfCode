@@ -1,5 +1,5 @@
-from AdventUtils.Day import Day
-from AdventUtils.Graph import Graph
+from src.AdventUtils.Day import Day
+from src.AdventUtils.Graph import Graph
 
 
 class Day9(Day):

@@ -1,5 +1,5 @@
-from AdventUtils.Day import Day
-from AdventUtils.Math import magic_divisors
+from src.AdventUtils.Day import Day
+from src.AdventUtils.Math import magic_divisors
 
 
 class Day20(Day):

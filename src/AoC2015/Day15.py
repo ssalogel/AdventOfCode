@@ -1,4 +1,4 @@
-from AdventUtils.Day import Day
+from src.AdventUtils.Day import Day
 
 
 Ingredient = tuple[str, int, int, int, int, int]

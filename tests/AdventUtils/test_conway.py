@@ -1,4 +1,4 @@
-from AdventUtils.Conway import FullBoardConway2D
+from src.AdventUtils.Conway import FullBoardConway2D
 import pytest
 
 

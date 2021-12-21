@@ -1,4 +1,4 @@
-from AdventUtils.Computer import Computer, Instructions
+from src.AdventUtils.Computer import Computer, Instructions
 import pytest
 
 

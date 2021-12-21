@@ -10,14 +10,14 @@ class Day(ABC):
         self.day = day
         self.year = year
         if content:
-            self.text = content
+            self.content = content
         else:
             cookie = os.environ.get("COOKIE", "test")
             if not os.path.exists(f"data/{year}day{day}.txt"):
                 r = requests.get(f"https://adventofcode.com/{year}/day/{day}/input", cookies={"session": cookie})
                 with open(f'data/{year}day{day}.txt', 'wb') as f:
                     f.write(r.content)
-            self.text = open(f'data/{year}day{day}.txt').read().strip()
+            self.content = open(f'data/{year}day{day}.txt').read().strip()
         self.res = None
 
     @abstractmethod
@@ -35,9 +35,9 @@ class Day(ABC):
     def run(self):
         print(f'starting day {self.day} of {self.year}\n')
         t0 = perf_counter()
-        self.res = self.part1(self.parse_content(self.text))
+        self.res = self.part1(self.parse_content(self.content))
         t1 = perf_counter()
         print(f"Part1 : {t1 - t0:.3} seconds\n{self.res}\n")
-        res = self.part2(self.parse_content(self.text))
+        res = self.part2(self.parse_content(self.content))
         t2 = perf_counter()
         print(f"Part2 : {t2 - t1:.3} seconds\n{res}\n")
