@@ -90,10 +90,3 @@ class Day16(Day):
     def part2(self, parsed_content) -> int:
         tree, _ = self.extract_packet(parsed_content)
         return self.solve_tree(tree.pop())
-
-
-if __name__ == '__main__':
-    content = None
-    d = Day16(content=content)
-    print(d.part1(parsed_content=d.parse_content(content=d.content)))
-    print(d.part2(parsed_content=d.parse_content(content=d.content)))

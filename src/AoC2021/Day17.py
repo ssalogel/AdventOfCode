@@ -41,11 +41,3 @@ class Day17(Day):
                     valid += 1
                     break
         return valid
-
-
-if __name__ == '__main__':
-    content = """target area: x=195..238, y=-93..-67"""
-    content = """target area: x=20..30, y=-10..-5"""
-    d = Day17(content=content)
-    print(d.part1(parsed_content=d.parse_content(content=d.content)))
-    print(d.part2(parsed_content=d.parse_content(content=d.content)))
