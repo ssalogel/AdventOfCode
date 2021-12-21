@@ -30,6 +30,7 @@ def test_part2():
     d = Day15(content="test")
     assert d.part2(d.parse_content(test_input)) == 315
 
+
 def test_actual_input():
     with open('./tests/aoc_2021/data/2021day15.txt', 'r') as file:
         content = file.read().strip()

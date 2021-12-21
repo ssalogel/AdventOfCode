@@ -5,6 +5,7 @@ from itertools import combinations
 
 Pos = tuple[int, int, int]
 
+
 class Day19(Day):
     def __init__(self, content=None):
         super().__init__(day=19, year=2021, content=content)

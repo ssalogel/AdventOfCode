@@ -46,6 +46,7 @@ CN -> C"""
     d = Day14(content="test")
     assert d.part2(d.parse_content(test_input)) == 2188189693529
 
+
 def test_actual_input():
     with open('./tests/aoc_2021/data/2021day14.txt', 'r') as file:
         content = file.read().strip()

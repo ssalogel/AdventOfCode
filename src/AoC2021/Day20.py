@@ -1,6 +1,7 @@
 from src.AdventUtils.Day import Day
 from src.AdventUtils.Grid2D import get_neighbours_dig_with_self_unbound
 
+
 class Day20(Day):
     def __init__(self, content=None):
         super().__init__(day=20, year=2021, content=content)
