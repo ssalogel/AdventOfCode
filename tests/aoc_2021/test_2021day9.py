@@ -1,4 +1,4 @@
-from AoC2021.Day9 import Day9
+from src.AoC2021.Day9 import Day9
 
 
 def test_find_low_points():

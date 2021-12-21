@@ -1,4 +1,4 @@
-from AoC2021.Day6 import Day6
+from src.AoC2021.Day6 import Day6
 
 
 def test_spawn_fishes():

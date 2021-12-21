@@ -1,4 +1,4 @@
-from AdventUtils.Day import Day
+from src.AdventUtils.Day import Day
 from sys import maxsize
 from functools import reduce
 

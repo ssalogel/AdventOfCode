@@ -1,5 +1,5 @@
-from AdventUtils.Day import Day
-from AdventUtils.Grid2D import get_neighbours
+from src.AdventUtils.Day import Day
+from src.AdventUtils.Grid2D import get_neighbours
 from collections import defaultdict
 from sys import maxsize
 from queue import PriorityQueue

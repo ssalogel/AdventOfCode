@@ -1,4 +1,4 @@
-from AoC2015.Day7 import Day7
+from src.AoC2015.Day7 import Day7
 
 
 def test_parse_content():

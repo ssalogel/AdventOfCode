@@ -1,6 +1,6 @@
-from AdventUtils.Day import Day
-from AdventUtils.Math import bitwise_and, bitwise_or, bitwise_not, bitwise_rshift, bitwise_lshift
-from AdventUtils.Equation_solver import Solver
+from src.AdventUtils.Day import Day
+from src.AdventUtils.Math import bitwise_and, bitwise_or, bitwise_not, bitwise_rshift, bitwise_lshift
+from src.AdventUtils.Equation_solver import Solver
 from functools import partial
 
 

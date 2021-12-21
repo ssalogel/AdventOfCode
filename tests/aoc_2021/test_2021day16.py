@@ -1,4 +1,4 @@
-from AoC2021.Day16 import Day16
+from src.AoC2021.Day16 import Day16
 import pytest
 
 

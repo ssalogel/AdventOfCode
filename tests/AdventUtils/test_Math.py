@@ -1,4 +1,4 @@
-from AdventUtils import Math
+from src.AdventUtils import Math
 import pytest
 
 

@@ -1,4 +1,4 @@
-from AdventUtils.Day import Day
+from src.AdventUtils.Day import Day
 from math import sqrt, floor
 from itertools import product
 
@@ -45,7 +45,7 @@ class Day17(Day):
 
 if __name__ == '__main__':
     content = """target area: x=195..238, y=-93..-67"""
-    #content = """target area: x=20..30, y=-10..-5"""
+    content = """target area: x=20..30, y=-10..-5"""
     d = Day17(content=content)
     print(d.part1(parsed_content=d.parse_content(content=d.content)))
     print(d.part2(parsed_content=d.parse_content(content=d.content)))

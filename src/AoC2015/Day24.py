@@ -1,5 +1,5 @@
-from AdventUtils.Day import Day
-from AdventUtils.Math import get_subsets_min_len_sum_target
+from src.AdventUtils.Day import Day
+from src.AdventUtils.Math import get_subsets_min_len_sum_target
 from functools import reduce
 from operator import mul
 

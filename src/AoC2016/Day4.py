@@ -1,5 +1,5 @@
-from AdventUtils.Day import Day
-from AdventUtils.Crypto import rot13
+from src.AdventUtils.Day import Day
+from src.AdventUtils.Crypto import rot13
 from functools import reduce
 from collections import defaultdict
 

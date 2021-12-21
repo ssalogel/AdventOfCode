@@ -1,5 +1,5 @@
-from AdventUtils.Day import Day
-from AdventUtils.Conway import FullBoardConway2D
+from src.AdventUtils.Day import Day
+from src.AdventUtils.Conway import FullBoardConway2D
 
 
 class Day18(Day):

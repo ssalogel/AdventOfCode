@@ -1,4 +1,4 @@
-from AdventUtils.Day import Day
+from src.AdventUtils.Day import Day
 from ast import literal_eval
 from typing import Optional, Union
 from math import ceil

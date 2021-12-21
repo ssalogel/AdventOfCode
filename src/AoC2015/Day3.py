@@ -1,5 +1,5 @@
-from AdventUtils.Day import Day
-from AdventUtils.Grid2D import Position2D
+from src.AdventUtils.Day import Day
+from src.AdventUtils.Grid2D import Position2D
 
 
 class Day3(Day):

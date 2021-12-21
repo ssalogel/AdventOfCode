@@ -1,5 +1,5 @@
-from AdventUtils.Day import Day
-from AdventUtils.Grid2D import get_neighbours_dig
+from src.AdventUtils.Day import Day
+from src.AdventUtils.Grid2D import get_neighbours_dig
 
 
 class Day11(Day):

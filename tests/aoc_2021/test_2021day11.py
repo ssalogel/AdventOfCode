@@ -1,4 +1,4 @@
-from AoC2021.Day11 import Day11
+from src.AoC2021.Day11 import Day11
 
 
 def test_step():

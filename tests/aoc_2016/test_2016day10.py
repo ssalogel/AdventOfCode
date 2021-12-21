@@ -1,4 +1,4 @@
-from AoC2016.Day10 import Day10
+from src.AoC2016.Day10 import Day10
 
 
 def test_actual_input():

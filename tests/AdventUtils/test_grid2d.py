@@ -1,4 +1,4 @@
-from AdventUtils.Grid2D import Position2D, Grid2DBool, Grid2Dint
+from src.AdventUtils.Grid2D import Position2D, Grid2DBool, Grid2Dint
 import pytest
 
 

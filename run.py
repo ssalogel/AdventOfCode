@@ -1,6 +1,6 @@
-from AoC2015 import Days as d2015
-from AoC2016 import Days as d2016
-from AoC2021 import Days as d2021
+from src.AoC2015 import Days as d2015
+from src.AoC2016 import Days as d2016
+from src.AoC2021 import Days as d2021
 from time import perf_counter
 
 

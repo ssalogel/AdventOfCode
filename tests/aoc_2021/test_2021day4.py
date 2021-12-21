@@ -1,4 +1,4 @@
-from AoC2021.Day4 import Day4
+from src.AoC2021.Day4 import Day4
 
 
 def test_part1():

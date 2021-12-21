@@ -1,5 +1,5 @@
-from AdventUtils.Day import Day
-from AdventUtils.Bingo import Bingo
+from src.AdventUtils.Day import Day
+from src.AdventUtils.Bingo import Bingo
 
 
 Board = list[list[int]]

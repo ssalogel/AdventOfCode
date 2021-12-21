@@ -12,6 +12,13 @@ def get_neighbours_dig(x, y, width, height):
             x + x_add >= 0 and x + x_add < width and y + y_add >= 0 and y + y_add < height}
 
 
+def get_neighbours_dig_with_self_unbound(x, y):
+    offsets = [(-1, -1), (-1, 0), (-1, 1),
+               (0, -1), (0, 0), (0, 1),
+               (1, -1), (1, 0), (1, 1)]
+    return [(x + x_add, y + y_add) for x_add, y_add in offsets]
+
+
 def get_neighbours(x, y, width, height) -> set[tuple[int, int]]:
     offsets = [(-1, 0), (0, -1), (0, 1), (1, 0)]
     return {(x + x_add, y + y_add) for x_add, y_add in offsets if
