@@ -38,7 +38,10 @@ class Day22(Day):
             cz1 = max(z1, zp1)
             cz2 = min(z2, zp2)
 
-            # both on, cancel the overlapping double count, or toggle the intersection
+            # both on: cancel the overlapping double count
+            # old on, new off: negates that overlap
+            # both off: cancel the overlapping double count
+            # old off, new on: negate that negative square
             to_add.append((-1*st, ((cx1, cx2), (cy1, cy2), (cz1, cz2))))
         if state == "on":
             states.append((1, ((x1, x2), (y1, y2), (z1, z2))))
@@ -67,7 +70,6 @@ class Day22(Day):
         for action in parsed_content:
             self.apply(action, cubes)
         return self.count_on(cubes)
-
 
 
 if __name__ == '__main__':
