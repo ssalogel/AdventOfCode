@@ -93,8 +93,6 @@ class Day23(Day):
         visited = set()
         while not queue.empty():
             cost, curr_map = queue.get()
-            if cost > 3087:
-                pass
             if self.is_win(curr_map):
                 return cost, curr_map
             if curr_map in visited:
