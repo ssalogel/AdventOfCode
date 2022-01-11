@@ -36,20 +36,20 @@ class Day15(Day):
 
     def part2(self, parsed_content) -> int:
         height, _ = len(parsed_content), len(parsed_content[0])
-        map = []
+        chiton_map = []
         for row in parsed_content:
             final_row = []
             for i in range(5):
                 for cell in row:
                     v = cell + i
                     final_row.append(v if v <= 9 else v - 9)
-            map.append(final_row)
+            chiton_map.append(final_row)
 
         for i in range(0, 4):
-            for row in map[i*height:i*height+height]:
+            for row in chiton_map[i*height:i*height+height]:
                 new_row = []
                 for cell in row:
                     v = cell + 1
                     new_row.append(v if v <= 9 else v - 9)
-                map.append(new_row)
-        return self.path_find(map)
+                chiton_map.append(new_row)
+        return self.path_find(chiton_map)

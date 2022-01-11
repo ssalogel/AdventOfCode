@@ -23,7 +23,7 @@ class Day19(Day):
                 (z, y, -x), (z, x, y), (z, -y, x), (z, -x, -y),
                 (-z, y, x), (-z, -x, y), (-z, -y, -x), (-z, x, -y)]
 
-    @lru_cache(8096)
+    @lru_cache(None)
     def check_fit(self, og_sc_bea: frozenset[Pos], rel_bea: frozenset[Pos]) -> tuple[int, Pos, set[Pos]]:
         orientations = [self.gen_all_orientation(b) for b in rel_bea]
         for ori in zip(*orientations):
