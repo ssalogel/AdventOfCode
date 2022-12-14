@@ -1,5 +1,7 @@
 from src.AdventUtils.Day import Day
 import re
+from tqdm import tqdm
+
 
 class Day5(Day):
     def __init__(self, content=None):
@@ -12,30 +14,26 @@ class Day5(Day):
         return crates, instr
 
     def make_stack(self, crates: list[str]) -> list[list[str]]:
-        stack = [[] for _ in range(len(crates[0]))]
+        stack = [[] for _ in range(len(crates[0]) + 1)]
         for row in reversed(crates):
             for i, l in enumerate(row):
                 if l != " ":
-                    stack[i].append(l)
+                    stack[i+1].append(l)
         return stack
 
     def part1(self, parsed_content) -> str:
         stack = self.make_stack(parsed_content[0])
         for amount, i, j in parsed_content[1]:
-            i -= 1
-            j -= 1
-            for _ in range(amount):
-                stack[j].append(stack[i].pop())
-        return ''.join([s[-1] for s in stack])
+            stack[j] += list(reversed(stack[i][-amount:]))
+            stack[i] = stack[i][:-amount]
+        return ''.join([s[-1] for s in stack[1:]])
 
     def part2(self, parsed_content) -> str:
         stack = self.make_stack(parsed_content[0])
         for amount, i, j in parsed_content[1]:
-            i -= 1
-            j -= 1
             stack[j] += stack[i][-amount:]
             stack[i] = stack[i][:-amount]
-        return ''.join([s[-1] for s in stack])
+        return ''.join([s[-1] for s in stack[1:]])
 
 
 if __name__ == '__main__':
@@ -52,3 +50,4 @@ move 1 from 1 to 2
     d = Day5(content=input_content)
     print(d.part1(parsed_content=d.parse_content(content=d.content)))
     print(d.part2(parsed_content=d.parse_content(content=d.content)))
+
