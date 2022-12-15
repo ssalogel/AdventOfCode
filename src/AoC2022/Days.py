@@ -11,10 +11,10 @@ from src.AoC2022.Day10 import Day10
 from src.AoC2022.Day11 import Day11
 from src.AoC2022.Day12 import Day12
 from src.AoC2022.Day13 import Day13
-
+from src.AoC2022.Day15 import Day15
 
 def get_all_days():
-    return [Day1, Day2, Day3, Day4, Day5, Day6, Day7, Day8, Day9, Day10, Day11, Day12, Day13]
+    return [Day1, Day2, Day3, Day4, Day5, Day6, Day7, Day8, Day9, Day10, Day11, Day12, Day13, Day15]
 
 
 def get_fast_days():

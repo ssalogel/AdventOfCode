@@ -29,6 +29,10 @@ def manhatthan_dist(start: tuple[int, int], end: tuple[int, int]):
     return abs(start[0] - end[0]) + abs(start[1] - end[1])
 
 
+def manhatthan_dist(start: 'Position2D', end: 'Position2D'):
+    return abs(start.x - end.x) + abs(start.y - end.y)
+
+
 @dataclass(frozen=True, eq=True)
 class Position2D:
     x: int = 0
