@@ -7,8 +7,12 @@ class Day5(Day):
         super().__init__(day=5, year=2021, content=content)
 
     def parse_content(self, content: str):
-        return [(tuple(map(int, start.split(','))), tuple(map(int, stop.split(','))))
-                for start, stop in [line.split(' -> ') for line in content.strip().split('\n')]]
+        return [
+            (tuple(map(int, start.split(","))), tuple(map(int, stop.split(","))))
+            for start, stop in [
+                line.split(" -> ") for line in content.strip().split("\n")
+            ]
+        ]
 
     def part1(self, parsed_content) -> int:
         board = defaultdict(int)
@@ -31,10 +35,14 @@ class Day5(Day):
                         board[(i, j)] += 1
             else:
                 if start[1] <= end[1]:
-                    for i, j in zip(range(start[0], end[0] + 1), range(start[1], end[1] + 1)):
+                    for i, j in zip(
+                        range(start[0], end[0] + 1), range(start[1], end[1] + 1)
+                    ):
                         board[(i, j)] += 1
                 else:
-                    for i, j in zip(range(start[0], end[0] + 1), range(start[1], end[1] - 1, -1)):
+                    for i, j in zip(
+                        range(start[0], end[0] + 1), range(start[1], end[1] - 1, -1)
+                    ):
                         board[(i, j)] += 1
 
         return len([k for k, v in board.items() if v > 1])

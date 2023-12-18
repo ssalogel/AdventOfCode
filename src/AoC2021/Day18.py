@@ -5,11 +5,11 @@ from math import ceil
 from itertools import permutations
 
 
-Elem = Union[int, 'Snailfish']
+Elem = Union[int, "Snailfish"]
 
 
 class Snailfish:
-    def __init__(self, content: list, parent: Optional['Snailfish'] = None):
+    def __init__(self, content: list, parent: Optional["Snailfish"] = None):
         left = content[0]
         right = content[1]
         self.left_end = False
@@ -31,9 +31,9 @@ class Snailfish:
             self.right_end = True
 
     def __repr__(self) -> str:
-        return [self.left.__repr__(), self.right.__repr__()].__repr__().replace('\'', '')
+        return [self.left.__repr__(), self.right.__repr__()].__repr__().replace("'", "")
 
-    def __add__(self, other: 'Snailfish') -> 'Snailfish':
+    def __add__(self, other: "Snailfish") -> "Snailfish":
         if self.parent is not None:
             raise Exception
         parent = Snailfish([0, 0])
@@ -108,14 +108,14 @@ class Snailfish:
                 return False
         if self.left_end and self.left > 9:
             self.left_end = False
-            self.left = Snailfish([self.left//2, ceil(self.left/2)], parent=self)
+            self.left = Snailfish([self.left // 2, ceil(self.left / 2)], parent=self)
             return False
         if not self.right_end:
             if not self.right.split():
                 return False
         if self.right_end and self.right > 9:
             self.right_end = False
-            self.right = Snailfish([self.right//2, ceil(self.right/2)], parent=self)
+            self.right = Snailfish([self.right // 2, ceil(self.right / 2)], parent=self)
             return False
         return True
 
@@ -145,13 +145,13 @@ class Snailfish:
         else:
             p.right.get_left_most().left += to_add
 
-    def get_left_most(self) -> 'Snailfish':
+    def get_left_most(self) -> "Snailfish":
         c = self
         while not c.left_end:
             c = c.left
         return c
 
-    def get_right_most(self) -> 'Snailfish':
+    def get_right_most(self) -> "Snailfish":
         c = self
         while not c.right_end:
             c = c.right
@@ -168,7 +168,7 @@ class Day18(Day):
         super().__init__(day=18, year=2021, content=content)
 
     def parse_content(self, content: str):
-        return [literal_eval(c) for c in content.strip().split('\n')]
+        return [literal_eval(c) for c in content.strip().split("\n")]
 
     def part1(self, parsed_content) -> int:
         num = Snailfish(parsed_content[0])

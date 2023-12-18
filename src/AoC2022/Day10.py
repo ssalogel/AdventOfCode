@@ -21,7 +21,7 @@ class Day10(Day):
             cycle += 1
             if (cycle + 20) % 40 == 0:
                 res += cycle * acc
-            command, amount = instr.split(' ')
+            command, amount = instr.split(" ")
             amount = int(amount)
             acc += amount
         return res
@@ -32,18 +32,18 @@ class Day10(Day):
         res = []
         for instr in parsed_content:
             cycle += 1
-            res.append('#') if abs(acc - ((cycle - 1) % 40)) <= 1 else res.append('.')
+            res.append("#") if abs(acc - ((cycle - 1) % 40)) <= 1 else res.append(".")
             if instr == "noop":
                 continue
             cycle += 1
-            res.append('#') if abs(acc - ((cycle - 1) % 40)) <= 1 else res.append('.')
-            command, amount = instr.split(' ')
+            res.append("#") if abs(acc - ((cycle - 1) % 40)) <= 1 else res.append(".")
+            command, amount = instr.split(" ")
             amount = int(amount)
             acc += amount
-        return '\n'.join([''.join(res[i:i+40]) for i in range(0, len(res), 40)])
+        return "\n".join(["".join(res[i : i + 40]) for i in range(0, len(res), 40)])
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     input_content = """noop
 addx 3
 addx -5

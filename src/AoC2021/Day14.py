@@ -8,8 +8,8 @@ class Day14(Day):
         super().__init__(day=14, year=2021, content=content)
 
     def parse_content(self, content: str):
-        start, rules = content.strip().split('\n\n')
-        return start, [r.split(' -> ') for r in rules.split('\n')]
+        start, rules = content.strip().split("\n\n")
+        return start, [r.split(" -> ") for r in rules.split("\n")]
 
     def step(self, start, rules, number) -> list[tuple[str, int]]:
         occurences = Counter(start)

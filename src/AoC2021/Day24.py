@@ -7,8 +7,14 @@ class Day24(Day):
         super().__init__(day=24, year=2021, content=content)
 
     def parse_content(self, content: str) -> list[tuple[int, int]]:
-        lines = content.strip().split('\n')
-        return [(int(lines[i*18:(i+1)*18][5][6:]), int(lines[i*18:(i+1)*18][-3][6:])) for i in range(14)]
+        lines = content.strip().split("\n")
+        return [
+            (
+                int(lines[i * 18 : (i + 1) * 18][5][6:]),
+                int(lines[i * 18 : (i + 1) * 18][-3][6:]),
+            )
+            for i in range(14)
+        ]
 
     @staticmethod
     def get_constraints(pairs: list[tuple[int, int]]) -> dict[int, tuple[int, int]]:
@@ -41,18 +47,18 @@ class Day24(Day):
             # so that d0 + 1 == d2 and d0 < 10 and d1 < 10
             digits[source] = min(9, 9 + offset)  # digit at decrease
             digits[divi] = min(9, 9 - offset)  # digit at increase
-        return int(''.join(str(digits[x]) for x in range(len(parsed_content))))
+        return int("".join(str(digits[x]) for x in range(len(parsed_content))))
 
     def part2(self, parsed_content: list[tuple[int, int]]) -> int:
         constraints = self.get_constraints(parsed_content)
         digits = {}
         for source, (divi, offset) in constraints.items():
             digits[source] = max(1, 1 + offset)  # digit at decrease
-            digits[divi] = max(1, 1 - offset)    # digit at increase
-        return int(''.join(str(digits[x]) for x in range(len(parsed_content))))
+            digits[divi] = max(1, 1 - offset)  # digit at increase
+        return int("".join(str(digits[x]) for x in range(len(parsed_content))))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     input_content = None
     d = Day24(content=input_content)
     print(d.part1(parsed_content=d.parse_content(content=d.content)))

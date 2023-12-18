@@ -9,10 +9,10 @@ class Day24(Day):
         super().__init__(day=24, year=2015, content=content)
 
     def parse_content(self, content: str) -> list[int]:
-        return [int(d) for d in content.strip().split('\n')]
+        return [int(d) for d in content.strip().split("\n")]
 
     def part1(self, parsed_content: list[int]):
-        target = sum(parsed_content)//3
+        target = sum(parsed_content) // 3
         potential = get_subsets_min_len_sum_target(target=target, nums=parsed_content)
         qes = [reduce(mul, p) for p in potential]
         return min(qes)

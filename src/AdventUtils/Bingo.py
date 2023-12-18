@@ -9,10 +9,12 @@ class Bingo:
 
     def check_win_no_diag(self) -> bool:
         for start in range(self.boardsize):
-            row = self.board[start*self.boardsize:start*self.boardsize + self.boardsize]
+            row = self.board[
+                start * self.boardsize : start * self.boardsize + self.boardsize
+            ]
             if all(map(lambda x: self.numbers[x], row)):
                 return True
-            col = self.board[start:len(self.board):self.boardsize]
+            col = self.board[start : len(self.board) : self.boardsize]
             if all(map(lambda x: self.numbers[x], col)):
                 return True
         return False

@@ -12,7 +12,12 @@ class Day21(Day):
             yield n
 
     def parse_content(self, content: str):
-        return [int(e[1:]) for e in content.replace('Player ', '').replace(' starting position: ', '').split('\n')]
+        return [
+            int(e[1:])
+            for e in content.replace("Player ", "")
+            .replace(" starting position: ", "")
+            .split("\n")
+        ]
 
     def part1(self, parsed_content) -> int:
         play1, play2, *_ = parsed_content
@@ -51,10 +56,10 @@ class Day21(Day):
         return max(self.play(play1 - 1, 0, play2 - 1, 0))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     input_content = """Player 1 starting position: 4
 Player 2 starting position: 8"""
-    #input_content = None
+    # input_content = None
     d = Day21(content=input_content)
     print(d.part1(parsed_content=d.parse_content(content=d.content)))
     print(d.part2(parsed_content=d.parse_content(content=d.content)))

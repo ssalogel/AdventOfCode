@@ -10,7 +10,7 @@ class Day4(Day):
         return content.strip()
 
     def part1(self, parsed_content: str) -> int:
-        return find_hash(parsed_content, '00000')[0][0]
+        return find_hash(parsed_content, "00000")[0][0]
 
     def part2(self, parsed_content: str) -> int:
-        return find_hash(parsed_content, '000000')[0][0]
+        return find_hash(parsed_content, "000000")[0][0]

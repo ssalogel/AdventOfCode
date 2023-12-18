@@ -7,12 +7,12 @@ class Day1(Day):
         super().__init__(day=1, year=2016, content=content)
 
     def parse_content(self, content: str) -> list[tuple[str, int]]:
-        return [(d[0], int(d[1:])) for d in content.split(', ')]
+        return [(d[0], int(d[1:])) for d in content.split(", ")]
 
     def part1(self, parsed_content: list[tuple[str, int]]) -> int:
         walker = WalkingPosition()
         for turn, mag in parsed_content:
-            if turn == 'R':
+            if turn == "R":
                 walker.turn_right()
             else:
                 walker.turn_left()
@@ -23,7 +23,7 @@ class Day1(Day):
         walker = WalkingPosition()
         visited = {walker.pos}
         for turn, mag in parsed_content:
-            if turn == 'R':
+            if turn == "R":
                 walker.turn_right()
             else:
                 walker.turn_left()

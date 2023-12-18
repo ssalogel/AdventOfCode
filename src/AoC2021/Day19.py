@@ -11,29 +11,75 @@ class Day19(Day):
         super().__init__(day=19, year=2021, content=content)
 
     def parse_content(self, content: str) -> list[list[Pos]]:
-        coords = [c.strip().split('\n') for c in content.strip().split('---')[1:] if 'scanner' not in c]
-        return [[(int(s[:s.index(',')]), int(s[s.index(',')+1:s.rindex(',')]), int(s[s.rindex(',')+1:])) for s in scanner] for scanner in coords]
+        coords = [
+            c.strip().split("\n")
+            for c in content.strip().split("---")[1:]
+            if "scanner" not in c
+        ]
+        return [
+            [
+                (
+                    int(s[: s.index(",")]),
+                    int(s[s.index(",") + 1 : s.rindex(",")]),
+                    int(s[s.rindex(",") + 1 :]),
+                )
+                for s in scanner
+            ]
+            for scanner in coords
+        ]
 
     def gen_all_orientation(self, start: Pos) -> list[Pos]:
         x, y, z = start
-        return [(x, y, z), (x, -z, y), (x, -y, -z), (x, z, -y),
-                (y, -x, z), (y, -z, -x), (y, x, -z), (y, z, x),
-                (-x, -y, z), (-x, -z, -y), (-x, y, -z), (-x, z, y),
-                (-y, x, z), (-y, -z, x), (-y, -x, -z), (-y, z, -x),
-                (z, y, -x), (z, x, y), (z, -y, x), (z, -x, -y),
-                (-z, y, x), (-z, -x, y), (-z, -y, -x), (-z, x, -y)]
+        return [
+            (x, y, z),
+            (x, -z, y),
+            (x, -y, -z),
+            (x, z, -y),
+            (y, -x, z),
+            (y, -z, -x),
+            (y, x, -z),
+            (y, z, x),
+            (-x, -y, z),
+            (-x, -z, -y),
+            (-x, y, -z),
+            (-x, z, y),
+            (-y, x, z),
+            (-y, -z, x),
+            (-y, -x, -z),
+            (-y, z, -x),
+            (z, y, -x),
+            (z, x, y),
+            (z, -y, x),
+            (z, -x, -y),
+            (-z, y, x),
+            (-z, -x, y),
+            (-z, -y, -x),
+            (-z, x, -y),
+        ]
 
     @lru_cache(None)
-    def check_fit(self, og_sc_bea: frozenset[Pos], rel_bea: frozenset[Pos]) -> tuple[int, Pos, set[Pos]]:
+    def check_fit(
+        self, og_sc_bea: frozenset[Pos], rel_bea: frozenset[Pos]
+    ) -> tuple[int, Pos, set[Pos]]:
         orientations = [self.gen_all_orientation(b) for b in rel_bea]
         for ori in zip(*orientations):
             for ix, fixer in enumerate(ori[:-11]):
                 # since, if fit, at least 12 bea will fit, skipping 11 will still guarantee we find the one orientation and pair to find all others
                 for attempt in og_sc_bea:
-                    new_sc_pos = (attempt[0]-fixer[0], attempt[1]-fixer[1], attempt[2]-fixer[2])
+                    new_sc_pos = (
+                        attempt[0] - fixer[0],
+                        attempt[1] - fixer[1],
+                        attempt[2] - fixer[2],
+                    )
                     beacons = set()
                     for bea in ori:
-                        beacons.add((new_sc_pos[0]+bea[0], new_sc_pos[1]+bea[1], new_sc_pos[2]+bea[2]))
+                        beacons.add(
+                            (
+                                new_sc_pos[0] + bea[0],
+                                new_sc_pos[1] + bea[1],
+                                new_sc_pos[2] + bea[2],
+                            )
+                        )
                     inter = og_sc_bea.intersection(beacons)
                     if len(inter) >= 12:
                         return len(inter), new_sc_pos, beacons
@@ -46,7 +92,9 @@ class Day19(Day):
             for sc, bea_list in enumerate(parsed_content):
                 if sc in scanners:
                     continue
-                overlap, pos, beacons = self.check_fit(frozenset(known_beacons), frozenset(bea_list))
+                overlap, pos, beacons = self.check_fit(
+                    frozenset(known_beacons), frozenset(bea_list)
+                )
                 if overlap != -1:
                     scanners[sc] = pos
                     known_beacons = known_beacons.union(beacons)
@@ -59,17 +107,19 @@ class Day19(Day):
             for sc, bea_list in enumerate(parsed_content):
                 if sc in scanners:
                     continue
-                overlap, pos, beacons = self.check_fit(frozenset(known_beacons), frozenset(bea_list))
+                overlap, pos, beacons = self.check_fit(
+                    frozenset(known_beacons), frozenset(bea_list)
+                )
                 if overlap != -1:
                     scanners[sc] = pos
                     known_beacons = known_beacons.union(beacons)
         maxi = 0
         for a, b in combinations(scanners.values(), 2):
-            maxi = max(maxi, abs(a[0]-b[0])+abs(a[1]-b[1])+abs(a[2]-b[2]))
+            maxi = max(maxi, abs(a[0] - b[0]) + abs(a[1] - b[1]) + abs(a[2] - b[2]))
         return maxi
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     input_content = """--- scanner 0 ---
 404,-588,-901
 528,-643,409

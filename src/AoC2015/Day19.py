@@ -6,16 +6,18 @@ class Day19(Day):
         super().__init__(day=19, year=2015, content=content)
 
     def parse_content(self, content: str) -> tuple[list[list[str]], str]:
-        rules, mol = content.strip().split('\n\n')
-        return [d.split(' => ') for d in rules.strip().split('\n')], mol
+        rules, mol = content.strip().split("\n\n")
+        return [d.split(" => ") for d in rules.strip().split("\n")], mol
 
     def part1(self, parsed_content: tuple[list[list[str]], str]) -> int:
         rules, mol = parsed_content
         results = set()
         for src, dest in rules:
             part_mol = mol.split(src)
-            for i in range(len(part_mol)-1):
-                tmp_mol = part_mol[:i] + [dest.join(part_mol[i:i+2])] + part_mol[i+2:]
+            for i in range(len(part_mol) - 1):
+                tmp_mol = (
+                    part_mol[:i] + [dest.join(part_mol[i : i + 2])] + part_mol[i + 2 :]
+                )
                 results.add(src.join(tmp_mol))
         return len(results)
 
@@ -38,7 +40,24 @@ class Day19(Day):
                 len(mol) - count(Rn) - count(Ar) - 2(count(Y)) - 1 = steps
         """
         _, mol = parsed_content
-        valid_id = {'Al', 'B', 'Ca', 'F', 'H', 'Mg', 'N', 'O', 'P', 'Si', 'Th', 'Ti', 'e', 'Rn', 'Ar', 'Y'}
+        valid_id = {
+            "Al",
+            "B",
+            "Ca",
+            "F",
+            "H",
+            "Mg",
+            "N",
+            "O",
+            "P",
+            "Si",
+            "Th",
+            "Ti",
+            "e",
+            "Rn",
+            "Ar",
+            "Y",
+        }
         tot_atom = sum(mol.count(a) for a in valid_id)
-        steps = tot_atom - mol.count('Rn') - mol.count('Ar') - (2 * mol.count('Y')) - 1
+        steps = tot_atom - mol.count("Rn") - mol.count("Ar") - (2 * mol.count("Y")) - 1
         return steps

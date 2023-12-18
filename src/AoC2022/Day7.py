@@ -10,13 +10,13 @@ class File:
         self.name = name
         self.is_folder = folder
         self._size = size
-        self.parent: Optional['File'] = None
-        self.children: dict[str, 'File'] = {} if self.is_folder else None
+        self.parent: Optional["File"] = None
+        self.children: dict[str, "File"] = {} if self.is_folder else None
 
-    def get_child(self, name: str) -> 'File':
+    def get_child(self, name: str) -> "File":
         return self.children[name]
 
-    def add_child(self, child: 'File'):
+    def add_child(self, child: "File"):
         child.parent = self
         self.children[child.name] = child
 
@@ -38,21 +38,21 @@ class Day7(Day):
         return content.splitlines()
 
     def build_file_tree(self, instrs: list[str]) -> File:
-        root = File(name='/', folder=True, )
+        root = File(name="/", folder=True)
         current = root
         for instr in instrs:
-            if instr == '$ ls':
+            if instr == "$ ls":
                 pass
-            elif instr.startswith('$ cd'):
+            elif instr.startswith("$ cd"):
                 arg = instr[5:]
-                if arg == '/':
+                if arg == "/":
                     current = root
-                elif arg == '..':
+                elif arg == "..":
                     current = current.parent
                 else:
                     current = current.get_child(arg)
             else:
-                ident, name = instr.split(' ')
+                ident, name = instr.split(" ")
                 if ident.isnumeric():
                     f = File(name=name, folder=False, size=int(ident))
                 else:
@@ -63,12 +63,21 @@ class Day7(Day):
     def nb_folder_with_eqls_size(self, root: File, limit: int) -> int:
         if not root.is_folder:
             return 0
-        return (root.size if root.size <= limit else 0) + sum(self.nb_folder_with_eqls_size(c, limit) for c in root.children.values())
+        return (root.size if root.size <= limit else 0) + sum(
+            self.nb_folder_with_eqls_size(c, limit) for c in root.children.values()
+        )
 
     def find_folder_to_free(self, root: File, target_size: int) -> File:
-        if not any([c.size >= target_size and c.is_folder for c in root.children.values()]):
+        if not any(
+            [c.size >= target_size and c.is_folder for c in root.children.values()]
+        ):
             return root
-        potential = [self.find_folder_to_free(x, target_size) for x in filter(lambda x: x.size >= target_size and x.is_folder, root.children.values())]
+        potential = [
+            self.find_folder_to_free(x, target_size)
+            for x in filter(
+                lambda x: x.size >= target_size and x.is_folder, root.children.values()
+            )
+        ]
         potential.sort(key=lambda x: x.size)
         return potential[0]
 
@@ -87,7 +96,7 @@ class Day7(Day):
         return f.size
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     input_content = """$ cd /
 $ ls
 dir a

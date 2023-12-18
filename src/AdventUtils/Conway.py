@@ -23,17 +23,25 @@ class Conway(ABC):
 
 class FullBoardConway2D(Conway):
     """Conway game of life"""
-    def new_board(self, positions: set[tuple[int, int]], width: int, height: int) -> None:
-        """ positions are just to starting ON positions """
+
+    def new_board(
+        self, positions: set[tuple[int, int]], width: int, height: int
+    ) -> None:
+        """positions are just to starting ON positions"""
         self.board: set[tuple[int, int]] = positions
         self.width = width
         self.height = height
 
     def get_neighbours(self, x, y):
-        offsets = [(-1, -1), (-1, 0), (-1, 1),
-                   (0, -1),           (0, 1),
-                   (1, -1),  (1, 0),  (1, 1)]
-        return {(x + x_add, y + y_add) for x_add, y_add in offsets if x + x_add >= 0 and x + x_add < self.width and y + y_add >= 0 and y + y_add < self.height}
+        offsets = [(-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1)]
+        return {
+            (x + x_add, y + y_add)
+            for x_add, y_add in offsets
+            if x + x_add >= 0
+            and x + x_add < self.width
+            and y + y_add >= 0
+            and y + y_add < self.height
+        }
 
     def get_live_neighbours(self, x, y):
         possible = self.get_neighbours(x, y)

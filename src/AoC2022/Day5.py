@@ -7,10 +7,18 @@ class Day5(Day):
     def __init__(self, content=None):
         super().__init__(day=5, year=2022, content=content)
 
-    def parse_content(self, content: str) -> tuple[list[str], list[tuple[int, int, int]]]:
-        crates_dat, insrt_dat = content.split("\n\n")[0].splitlines(), content.split('\n\n')[1].splitlines()
+    def parse_content(
+        self, content: str
+    ) -> tuple[list[str], list[tuple[int, int, int]]]:
+        crates_dat, insrt_dat = (
+            content.split("\n\n")[0].splitlines(),
+            content.split("\n\n")[1].splitlines(),
+        )
         crates = [row[1::4] for row in crates_dat][:-1]
-        instr = [tuple(map(int, re.match(R"move (\d+) from (\d+) to (\d+)", line).groups())) for line in insrt_dat]
+        instr = [
+            tuple(map(int, re.match(R"move (\d+) from (\d+) to (\d+)", line).groups()))
+            for line in insrt_dat
+        ]
         return crates, instr
 
     def make_stack(self, crates: list[str]) -> list[list[str]]:
@@ -18,7 +26,7 @@ class Day5(Day):
         for row in reversed(crates):
             for i, l in enumerate(row):
                 if l != " ":
-                    stack[i+1].append(l)
+                    stack[i + 1].append(l)
         return stack
 
     def part1(self, parsed_content) -> str:
@@ -26,17 +34,17 @@ class Day5(Day):
         for amount, i, j in parsed_content[1]:
             stack[j] += list(reversed(stack[i][-amount:]))
             stack[i] = stack[i][:-amount]
-        return ''.join([s[-1] for s in stack[1:]])
+        return "".join([s[-1] for s in stack[1:]])
 
     def part2(self, parsed_content) -> str:
         stack = self.make_stack(parsed_content[0])
         for amount, i, j in parsed_content[1]:
             stack[j] += stack[i][-amount:]
             stack[i] = stack[i][:-amount]
-        return ''.join([s[-1] for s in stack[1:]])
+        return "".join([s[-1] for s in stack[1:]])
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     input_content = """    [D]    
 [N] [C]    
 [Z] [M] [P]
@@ -50,4 +58,3 @@ move 1 from 1 to 2
     d = Day5(content=input_content)
     print(d.part1(parsed_content=d.parse_content(content=d.content)))
     print(d.part2(parsed_content=d.parse_content(content=d.content)))
-

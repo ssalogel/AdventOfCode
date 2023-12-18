@@ -1,5 +1,5 @@
 from src.AdventUtils.Day import Day
-from src.AdventUtils.Grid2D import Position2D, manhatthan_dist
+from src.AdventUtils.Grid2D import Position2D, manhatthan_dist_pos
 
 import re
 from dataclasses import dataclass
@@ -13,6 +13,7 @@ class Pair:
     beacon: Position2D
     min_dist: int = -1
 
+
 @dataclass
 class Square:
     center: Position2D
@@ -23,27 +24,31 @@ class Square:
     dist: int
 
     def __contains__(self, other: Position2D):
-        if manhatthan_dist(other, self.center) <= self.dist:
+        if manhatthan_dist_pos(other, self.center) <= self.dist:
             return True
         return False
 
 
-def perimeter_generator(sensor: Position2D, distance: int) -> tuple[int, int]:
+def perimeter_generator(sensor: Position2D, distance: int) -> Position2D:
     for d in range(distance):
-        yield (Position2D.x + d, Position2D.y + distance - d)
-        yield (Position2D.x - d, Position2D.y - distance + d)
-        yield (Position2D.x + distance - d, Position2D.y - d)
-        yield (Position2D.x - distance + d, Position2D.y + d)
+        yield Position2D(sensor.x + d, sensor.y + distance - d)
+        yield Position2D(sensor.x - d, sensor.y - distance + d)
+        yield Position2D(sensor.x + distance - d, sensor.y - d)
+        yield Position2D(sensor.x - distance + d, sensor.y + d)
 
-def upper_left_generator(sensor: Position2D, distance: int) -> Position2D:
+
+def upper_left_generator_add_one(sensor: Position2D, distance: int) -> Position2D:
+    distance = distance + 1
     for d in range(distance):
-        yield Position2D(Position2D.x - distance + d, Position2D.y + d)
+        yield Position2D(sensor.x - distance + d, sensor.y + d)
+
 
 def join_to_lenght(left: tuple[int, int], right: tuple[int, int]):
     # assumes that left[0] <= right[0]
     if left[1] < right[0]:
         return [left, right]
     return [(min(left[0], right[0]), max(left[1], right[1]))]
+
 
 def get_blocked_range(p: Pair, target_y: int) -> Optional[tuple[int, int]]:
     up_range = p.sensor.y + p.min_dist
@@ -53,6 +58,7 @@ def get_blocked_range(p: Pair, target_y: int) -> Optional[tuple[int, int]]:
         return (p.sensor.x - dist_to_y, p.sensor.x + dist_to_y)
     return None
 
+
 class Day15(Day):
     def __init__(self, content=None):
         super().__init__(day=15, year=2022, content=content)
@@ -60,17 +66,23 @@ class Day15(Day):
     def parse_content(self, content: str):
         res = []
         for line in content.strip().splitlines():
-            s1, s2, b1, b2 = map(int, re.match(r"Sensor at x=(-?\d+), y=(-?\d+): closest beacon is at x=(-?\d+), y=(-?\d+)", line).groups())
-            res.append(Pair(Position2D(s1,s2), Position2D(b1, b2)))
+            s1, s2, b1, b2 = map(
+                int,
+                re.match(
+                    r"Sensor at x=(-?\d+), y=(-?\d+): closest beacon is at x=(-?\d+), y=(-?\d+)",
+                    line,
+                ).groups(),
+            )
+            res.append(Pair(Position2D(s1, s2), Position2D(b1, b2)))
         return res
 
     def part1(self, parsed_content: list[Pair]):
-        if __name__ != '__main__':
-            y_to_analyze = 2000000 
+        if __name__ != "__main__":
+            y_to_analyze = 2000000
         else:
             y_to_analyze = 20
         for p in parsed_content:
-            p.min_dist = manhatthan_dist(p.beacon, p.sensor)
+            p.min_dist = manhatthan_dist_pos(p.beacon, p.sensor)
         points = sorted(parsed_content, key=lambda x: x.min_dist)
         obscured = []
         for p in points:
@@ -89,12 +101,21 @@ class Day15(Day):
 
         # or
 
-        # find group of 4 squares with 2 pairs of separation 1 
+        # find group of 4 squares with 2 pairs of separation 1
         # where the other parings have separation of 0 or less
         squares = []
         for p in parsed_content:
-            dist = manhatthan_dist(p.beacon, p.sensor)
-            squares.append(Square(center=p.sensor, up=p.sensor.y+dist, right=p.sensor.x+dist, down=p.sensor.y-dist, left=p.sensor.x-dist, dist=dist))
+            dist = manhatthan_dist_pos(p.beacon, p.sensor)
+            squares.append(
+                Square(
+                    center=p.sensor,
+                    up=p.sensor.y + dist,
+                    right=p.sensor.x + dist,
+                    down=p.sensor.y - dist,
+                    left=p.sensor.x - dist,
+                    dist=dist,
+                )
+            )
         up_left_one_sep = []
         up_right_one_sep = []
         acc = 0
@@ -117,20 +138,18 @@ class Day15(Day):
                 up_right_one_sep.append((s2, s1))
         for a, b in up_left_one_sep:
             for c, d in up_right_one_sep:
-                if len(set([a.center, b.center, c.center, d.center])) != 4:
+                if len({a.center, b.center, c.center, d.center}) != 4:
                     continue
                 # a/b and d\c
-                for p in perimeter_generator(b.center, b.dist):
-                    p = p.move_left()
+                for p in upper_left_generator_add_one(b.center, b.dist):
                     if p.x < 0 or p.y < 0:
                         continue
                     if p in a or p in c or p in d:
                         continue
-                    print(p)
-        return len(up_left_one_sep), len(up_right_one_sep)
+                    return p.x * 4000000 + p.y
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     input_content = """Sensor at x=2, y=18: closest beacon is at x=-2, y=15
 Sensor at x=9, y=16: closest beacon is at x=10, y=16
 Sensor at x=13, y=2: closest beacon is at x=15, y=3

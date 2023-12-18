@@ -10,7 +10,7 @@ class Day15(Day):
         super().__init__(day=15, year=2021, content=content)
 
     def parse_content(self, content: str):
-        return [list(map(int, x)) for x in content.strip().split('\n')]
+        return [list(map(int, x)) for x in content.strip().split("\n")]
 
     def path_find(self, grid: list[list[int]]) -> int:
         height, width = len(grid), len(grid[0])
@@ -46,7 +46,7 @@ class Day15(Day):
             chiton_map.append(final_row)
 
         for i in range(0, 4):
-            for row in chiton_map[i*height:i*height+height]:
+            for row in chiton_map[i * height : i * height + height]:
                 new_row = []
                 for cell in row:
                     v = cell + 1

@@ -6,8 +6,8 @@ class Day7(Day):
         super().__init__(day=7, year=2016, content=content)
 
     def parse_content(self, content: str) -> list[tuple[list[str], list[str]]]:
-        adresses = content.strip().replace(']', '[').split('\n')
-        inter_ip_hyper = [ad.split('[') for ad in adresses]
+        adresses = content.strip().replace("]", "[").split("\n")
+        inter_ip_hyper = [ad.split("[") for ad in adresses]
         return [(ad[0::2], ad[1::2]) for ad in inter_ip_hyper]
 
     def has_abba(self, string: str) -> bool:
@@ -21,11 +21,11 @@ class Day7(Day):
         for string in strings:
             for a, b, c in zip(string, string[1:], string[2:]):
                 if a == c and a != b:
-                    abas.add(''.join([a, b, c]))
+                    abas.add("".join([a, b, c]))
         return abas
 
     def check_bab(self, strings: list[str], aba: set[str]):
-        pot_bab = [''.join([c[1], c[0], c[1]]) for c in aba]
+        pot_bab = ["".join([c[1], c[0], c[1]]) for c in aba]
         for string in strings:
             for pot_b in pot_bab:
                 if pot_b in string:
@@ -39,4 +39,7 @@ class Day7(Day):
         return sum(map(self.is_valid_ip, parsed_content))
 
     def part2(self, parsed_content: list[tuple[list[str], list[str]]]) -> int:
-        return sum(self.check_bab(hyper, self.get_aba(super)) for super, hyper in parsed_content)
+        return sum(
+            self.check_bab(hyper, self.get_aba(super))
+            for super, hyper in parsed_content
+        )

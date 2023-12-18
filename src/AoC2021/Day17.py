@@ -8,7 +8,13 @@ class Day17(Day):
         super().__init__(day=17, year=2021, content=content)
 
     def parse_content(self, content: str):
-        return [list(map(int, v.split('..'))) for v in content.replace('target area: x=', '').replace('y=', '').strip().split(', ')]
+        return [
+            list(map(int, v.split("..")))
+            for v in content.replace("target area: x=", "")
+            .replace("y=", "")
+            .strip()
+            .split(", ")
+        ]
 
     def step(self, x, y, x_speed, y_speed):
         y += y_speed
@@ -29,11 +35,13 @@ class Day17(Day):
         bottom_y = parsed_content[1][0]
         max_x_speed = parsed_content[0][1]
         # start_of_target = n*(n+1)/2 -> st*2 = n^2 + n -> floor(sqrt(2st)) = n
-        min_x_speed = floor(sqrt(parsed_content[0][0]*2))
+        min_x_speed = floor(sqrt(parsed_content[0][0] * 2))
         max_y_speed = abs(parsed_content[1][0]) - 1
         min_y_speed = parsed_content[1][0]
         valid = 0
-        for x_speed, y_speed in product(range(min_x_speed, max_x_speed + 1), range(min_y_speed, max_y_speed + 1)):
+        for x_speed, y_speed in product(
+            range(min_x_speed, max_x_speed + 1), range(min_y_speed, max_y_speed + 1)
+        ):
             x = y = 0
             while x <= right_x and y > bottom_y:
                 x, y, x_speed, y_speed = self.step(x, y, x_speed, y_speed)

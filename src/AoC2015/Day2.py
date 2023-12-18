@@ -7,7 +7,10 @@ class Day2(Day):
         super().__init__(day=2, year=2015, content=content)
 
     def parse_content(self, content: str) -> list[Box]:
-        return [Box(int(a), int(b), int(c)) for a, b, c in [line.split('x') for line in content.split('\n')]]
+        return [
+            Box(int(a), int(b), int(c))
+            for a, b, c in [line.split("x") for line in content.split("\n")]
+        ]
 
     def part1(self, parsed_content: list[Box]) -> int:
         total = 0

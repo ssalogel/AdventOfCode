@@ -6,34 +6,34 @@ class Day25(Day):
         super().__init__(day=25, year=2021, content=content)
 
     def parse_content(self, content: str):
-        return [[c for c in line] for line in content.strip().split('\n')]
+        return [[c for c in line] for line in content.strip().split("\n")]
 
     def step(self, grid: list[list[str]]) -> tuple[bool, list[list[str]]]:
         height = len(grid)
         width = len(grid[0])
         down = []
         changed = False
-        n_grid = [(['.']*width).copy() for _ in range(height)]
+        n_grid = [(["."] * width).copy() for _ in range(height)]
         for j in range(width):
             for i, row in enumerate(grid):
                 curr = row[j]
-                if curr == '.':
+                if curr == ".":
                     continue
-                elif curr == 'v':
+                elif curr == "v":
                     down.append((j, i))
                 else:
-                    if row[(j+1) % width] == '.':
-                        n_grid[i][(j + 1) % width] = '>'
+                    if row[(j + 1) % width] == ".":
+                        n_grid[i][(j + 1) % width] = ">"
                         changed = True
                     else:
-                        n_grid[i][j] = '>'
+                        n_grid[i][j] = ">"
         down.sort()
         for j, i in down:
-            if grid[(i+1) % height][j] != 'v' and n_grid[(i+1) % height][j] == '.':
-                n_grid[(i + 1) % height][j] = 'v'
+            if grid[(i + 1) % height][j] != "v" and n_grid[(i + 1) % height][j] == ".":
+                n_grid[(i + 1) % height][j] = "v"
                 changed = True
             else:
-                n_grid[i][j] = 'v'
+                n_grid[i][j] = "v"
         return changed, n_grid
 
     def part1(self, parsed_content) -> int:
@@ -49,7 +49,7 @@ class Day25(Day):
         return "WINNER!"
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     input_content = """v...>>.vv>
 .vv>>.vv..
 >>.>v>...v

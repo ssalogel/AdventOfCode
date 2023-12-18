@@ -10,14 +10,14 @@ class Day5(Day):
         return content
 
     def part1(self, parsed_content: str) -> str:
-        hashes = find_hash(parsed_content, '00000', 8)
-        return ''.join([c[5] for _, c in hashes])
+        hashes = find_hash(parsed_content, "00000", 8)
+        return "".join([c[5] for _, c in hashes])
 
     def part2(self, parsed_content: str) -> str:
-        hashes = find_hash(parsed_content, '00000', 36)
+        hashes = find_hash(parsed_content, "00000", 36)
         keys = {}
         for _, h in hashes:
             key = int(h[5], 16)
             if key < 8 and key not in keys:
                 keys[key] = h[6]
-        return ''.join(c for _, c in sorted(keys.items()))
+        return "".join(c for _, c in sorted(keys.items()))

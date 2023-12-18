@@ -9,7 +9,9 @@ class Day9(Day):
     def parse_content(self, content: str):
         return [(instr[0], int(instr[2:])) for instr in content.strip().splitlines()]
 
-    def resolve_distance(self, mover: Grid2D.Position2D, attached: Grid2D.Position2D) -> Grid2D.Position2D:
+    def resolve_distance(
+        self, mover: Grid2D.Position2D, attached: Grid2D.Position2D
+    ) -> Grid2D.Position2D:
         if mover.x != attached.x:
             if mover.x > attached.x:
                 attached = attached.move_right()
@@ -28,17 +30,19 @@ class Day9(Day):
         tail_visited: set[Grid2D.Position2D] = {tail}
         for direction, mag in parsed_content:
             for _ in range(mag):
-                if direction == 'U':
+                if direction == "U":
                     head = head.move_up()
-                elif direction == 'D':
+                elif direction == "D":
                     head = head.move_down()
-                elif direction == 'R':
+                elif direction == "R":
                     head = head.move_right()
-                elif direction == 'L':
+                elif direction == "L":
                     head = head.move_left()
                 else:
                     assert False, "wtf direction"
-                if (tail.x, tail.y) in Grid2D.get_neighbours_dig_with_self_unbound(head.x, head.y):
+                if (tail.x, tail.y) in Grid2D.get_neighbours_dig_with_self_unbound(
+                    head.x, head.y
+                ):
                     continue
                 tail = self.resolve_distance(head, tail)
                 tail_visited.add(tail)
@@ -50,25 +54,30 @@ class Day9(Day):
         tail_visited = {rope[-1]}
         for direction, mag in parsed_content:
             for _ in range(mag):
-                if direction == 'U':
+                if direction == "U":
                     rope[0] = rope[0].move_up()
-                elif direction == 'D':
+                elif direction == "D":
                     rope[0] = rope[0].move_down()
-                elif direction == 'R':
+                elif direction == "R":
                     rope[0] = rope[0].move_right()
-                elif direction == 'L':
+                elif direction == "L":
                     rope[0] = rope[0].move_left()
                 else:
                     assert False, "wtf direction"
                 for i, point in enumerate(rope[1:]):
-                    if (point.x, point.y) in Grid2D.get_neighbours_dig_with_self_unbound(rope[i].x, rope[i].y):
+                    if (
+                        point.x,
+                        point.y,
+                    ) in Grid2D.get_neighbours_dig_with_self_unbound(
+                        rope[i].x, rope[i].y
+                    ):
                         continue
                     rope[i + 1] = self.resolve_distance(rope[i], rope[i + 1])
                 tail_visited.add(rope[-1])
         return len(tail_visited)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     input_content = """R 4
 U 4
 L 3

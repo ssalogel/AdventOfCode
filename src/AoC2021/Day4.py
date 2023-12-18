@@ -10,15 +10,15 @@ class Day4(Day):
         super().__init__(day=4, year=2021, content=content)
 
     def parse_content(self, content: str) -> tuple[list[int], list[Board]]:
-        data = content.replace('  ', ' ').split('\n\n')
-        numbers = list(map(int, data.pop(0).split(',')))
+        data = content.replace("  ", " ").split("\n\n")
+        numbers = list(map(int, data.pop(0).split(",")))
 
-        boards = [b.split('\n') for b in data]
+        boards = [b.split("\n") for b in data]
         res = []
         for board in boards:
             n_board = []
             for row in board:
-                n_board.append(list(map(int, row.strip().split(' '))))
+                n_board.append(list(map(int, row.strip().split(" "))))
             res.append(n_board)
         return numbers, res
 

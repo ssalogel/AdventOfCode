@@ -6,7 +6,7 @@ class Day8(Day):
         super().__init__(day=8, year=2015, content=content)
 
     def parse_content(self, content: str) -> list[str]:
-        return content.split('\n')
+        return content.split("\n")
 
     @staticmethod
     def calc_num_of_coded_chars(string: str) -> int:
@@ -18,7 +18,7 @@ class Day8(Day):
 
     @staticmethod
     def calc_encoded_str_len(string: str) -> int:
-        return len(string) + 2 + string.count('"') + string.count('\\')
+        return len(string) + 2 + string.count('"') + string.count("\\")
 
     def part1(self, parsed_content: list[str]) -> int:
         char_code = 0

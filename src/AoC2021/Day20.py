@@ -7,9 +7,12 @@ class Day20(Day):
         super().__init__(day=20, year=2021, content=content)
 
     def parse_content(self, content: str):
-        content = content.replace('.', '0').replace('#', '1')
-        alg = content[:content.index('\n\n')]
-        picture = [[c for c in row] for row in content[content.index('\n\n')+1:].strip().split('\n')]
+        content = content.replace(".", "0").replace("#", "1")
+        alg = content[: content.index("\n\n")]
+        picture = [
+            [c for c in row]
+            for row in content[content.index("\n\n") + 1 :].strip().split("\n")
+        ]
         return alg, picture
 
     def pad_picture(self, picture: list[list[str]], value: str) -> list[str]:
@@ -20,15 +23,15 @@ class Day20(Day):
         return padded_picture
 
     def enhance(self, picture, alg, cycle) -> int:
-        defaults = ('0', alg[0])
+        defaults = ("0", alg[0])
         for step in range(cycle):
             picture = self.pad_picture(picture, defaults[step % 2])
             width = height = len(picture)
-            new_picture = [['' for _ in range(width)] for _ in range(height)]
+            new_picture = [["" for _ in range(width)] for _ in range(height)]
             for ix, row in enumerate(picture):
                 for jx, _ in enumerate(row):
                     nei = get_neighbours_dig_with_self_unbound(ix, jx)
-                    index = ''.join([picture[x % width][y % height] for x, y in nei])
+                    index = "".join([picture[x % width][y % height] for x, y in nei])
                     new_picture[ix][jx] = alg[int(index, 2)]
             picture = new_picture
         return sum(sum(int(v) for v in x) for x in picture)
@@ -46,7 +49,7 @@ class Day20(Day):
         return self.enhance(picture, alg, cycle)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     input_content = """..#.#..#####.#.#.#.###.##.....###.##.#..###.####..#####..#....#..#..##..###..######.###...####..#..#####..##..#.#####...##.#.#..#.##..#.#......#.###.######.###.####...#.##.##..#..#..#####.....#.#....###..#.##......#.....#..#..#..##..#...##.######.####.####.#.#...#.......#..#.#.#...####.##.#......#..#...##.#.##..#...##.#.##..###.#......#.#.......#.#.#.####.###.##...#.....####.#..#..#.##.#....##..#.####....##...##..#...#......#.#.......#.......##..####..#...#.#.#...##..#.#..###..#####........#..####......#..#
 
 #..#.

@@ -9,11 +9,21 @@ class Day15(Day):
         super().__init__(day=15, year=2015, content=content)
 
     def parse_content(self, content: str) -> list[Ingredient]:
-        data = content.strip().replace(',', '').split('\n')
-        return [(d[0], int(d[2]), int(d[4]), int(d[6]), int(d[8]), int(d[-1])) for d in [d.split(' ') for d in data]]
+        data = content.strip().replace(",", "").split("\n")
+        return [
+            (d[0], int(d[2]), int(d[4]), int(d[6]), int(d[8]), int(d[-1]))
+            for d in [d.split(" ") for d in data]
+        ]
 
-    def calc_ingredients(self, ingredients: dict[str, tuple[int, int, int, int, int]], amounts: list[tuple[str, int]]):
-        tot_ingredients = [tuple(map(lambda x: x*amount, ingredients[ingr])) for ingr, amount in amounts]
+    def calc_ingredients(
+        self,
+        ingredients: dict[str, tuple[int, int, int, int, int]],
+        amounts: list[tuple[str, int]],
+    ):
+        tot_ingredients = [
+            tuple(map(lambda x: x * amount, ingredients[ingr]))
+            for ingr, amount in amounts
+        ]
         return tuple(map(sum, zip(*tot_ingredients)))
 
     def part1(self, parsed_content: list[Ingredient]) -> int:
@@ -23,8 +33,15 @@ class Day15(Day):
         for i in range(101):
             for j in range(101 - i):
                 for k in range(101 - i - j):
-                    cap, dur, fla, tex, _ = self.calc_ingredients(ing_dic,  [(ing_list[0], i), (ing_list[1], j),
-                                                                             (ing_list[2], k), (ing_list[3], 100-(i + j + k))])
+                    cap, dur, fla, tex, _ = self.calc_ingredients(
+                        ing_dic,
+                        [
+                            (ing_list[0], i),
+                            (ing_list[1], j),
+                            (ing_list[2], k),
+                            (ing_list[3], 100 - (i + j + k)),
+                        ],
+                    )
                     if cap <= 0 or dur <= 0 or fla <= 0 or tex <= 0:
                         continue
                     if cap * dur * fla * tex > best:
@@ -38,8 +55,15 @@ class Day15(Day):
         for i in range(101):
             for j in range(101 - i):
                 for k in range(101 - i - j):
-                    cap, dur, fla, tex, cal = self.calc_ingredients(ing_dic,  [(ing_list[0], i), (ing_list[1], j),
-                                                                               (ing_list[2], k), (ing_list[3], 100-(i + j + k))])
+                    cap, dur, fla, tex, cal = self.calc_ingredients(
+                        ing_dic,
+                        [
+                            (ing_list[0], i),
+                            (ing_list[1], j),
+                            (ing_list[2], k),
+                            (ing_list[3], 100 - (i + j + k)),
+                        ],
+                    )
                     if cap <= 0 or dur <= 0 or fla <= 0 or tex <= 0 or cal != 500:
                         continue
                     if cap * dur * fla * tex > best:

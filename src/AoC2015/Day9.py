@@ -7,8 +7,8 @@ class Day9(Day):
         super().__init__(day=9, year=2015, content=content)
 
     def parse_content(self, content: str) -> list[tuple[int, str, str]]:
-        data = content.split('\n')
-        return [(int(s[-1]), s[0], s[2]) for s in [d.split(' ') for d in data]]
+        data = content.split("\n")
+        return [(int(s[-1]), s[0], s[2]) for s in [d.split(" ") for d in data]]
 
     def part1(self, parsed_content: list[tuple[int, str, str]]) -> int:
         data = parsed_content

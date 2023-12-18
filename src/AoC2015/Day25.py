@@ -7,7 +7,7 @@ class Day25(Day):
         self.start = 20151125
 
     def parse_content(self, content: str) -> tuple[int, int]:
-        data = content.replace('.', '').replace(',', '').split(' ')
+        data = content.replace(".", "").replace(",", "").split(" ")
         return int(data[-1]), int(data[-3])
 
     def part1(self, parsed_content: tuple[int, int]) -> int:

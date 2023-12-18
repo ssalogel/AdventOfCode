@@ -6,21 +6,26 @@ class Day8(Day):
         super().__init__(day=8, year=2021, content=content)
 
     def parse_content(self, content: str):
-        lines = [line.split(' | ') for line in content.strip().split('\n')]
-        return [(a[0].split(' '), a[1].split(' ')) for a in lines]
+        lines = [line.split(" | ") for line in content.strip().split("\n")]
+        return [(a[0].split(" "), a[1].split(" ")) for a in lines]
 
     def part1(self, parsed_content) -> int:
         count = 0
         for _, res in parsed_content:
             for digit in res:
-                if len(digit) == 2 or len(digit) == 3 or len(digit) == 4 or len(digit) == 7:
+                if (
+                    len(digit) == 2
+                    or len(digit) == 3
+                    or len(digit) == 4
+                    or len(digit) == 7
+                ):
                     count += 1
         return count
 
     @staticmethod
     def decode_segments(setup: list[str], digits: list[str]) -> list[int]:
         setup.sort(key=len)
-        numbers = {8: {'a', 'b', 'c', 'd', 'e', 'f', 'g'}}
+        numbers = {8: {"a", "b", "c", "d", "e", "f", "g"}}
         if len(setup[0]) == 2:
             numbers[1] = set(setup[0])
         else:
@@ -41,7 +46,11 @@ class Day8(Day):
             number = set(num)
             common_with_one = number.intersection(numbers[1])
             common_with_four = number.intersection(numbers[4])
-            match (len(number), len(common_with_one), len(common_with_four)):    # noqa E211
+            match (
+                len(number),
+                len(common_with_one),
+                len(common_with_four),
+            ):  # noqa E211
                 case 2, _, _:
                     res.append(1)
                 case 3, _, _:
@@ -65,10 +74,13 @@ class Day8(Day):
         return res
 
     def part2(self, parsed_content) -> int:
-        return sum(int(''.join(map(str, self.decode_segments(line, res)))) for line, res in parsed_content)
+        return sum(
+            int("".join(map(str, self.decode_segments(line, res))))
+            for line, res in parsed_content
+        )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     content = """be cfbegad cbdgef fgaecd cgeb fdcge agebfd fecdb fabcd edb | fdgacbe cefdb cefbgd gcbe
 edbfga begcd cbg gc gcadebf fbgde acbgfd abcde gfcbed gfec | fcgedb cgb dgebacf gc
 fgaebd cg bdaec gdafb agbcfd gdcbef bgcad gfac gcb cdgabef | cg cg fdcagb cbg

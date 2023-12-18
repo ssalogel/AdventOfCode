@@ -10,7 +10,7 @@ class Day10(Day):
 
     def step(self, string: str) -> str:
         count = 0
-        res = ''
+        res = ""
         for i, c in enumerate(string[:-1]):
             count += 1
             if string[i + 1] == c:

@@ -37,24 +37,34 @@ class Solver:
             self.solved_vars[res] = self.do_one_op_instr(operand=int(op), instr=instr)
             return True
         if op in self.solved_vars:
-            self.solved_vars[res] = self.do_one_op_instr(operand=self.solved_vars[op], instr=instr)
+            self.solved_vars[res] = self.do_one_op_instr(
+                operand=self.solved_vars[op], instr=instr
+            )
             return True
         return False
 
     def try_two_op_eq(self, op1: str, instr: str, op2: str, res: str) -> bool:
         if op1.isdigit():
             if op2.isdigit():
-                self.solved_vars[res] = self.do_two_op_instr(op1=int(op1), op2=int(op2), instr=instr)
+                self.solved_vars[res] = self.do_two_op_instr(
+                    op1=int(op1), op2=int(op2), instr=instr
+                )
                 return True
             if op2 in self.solved_vars:
-                self.solved_vars[res] = self.do_two_op_instr(op1=int(op1), op2=self.solved_vars[op2], instr=instr)
+                self.solved_vars[res] = self.do_two_op_instr(
+                    op1=int(op1), op2=self.solved_vars[op2], instr=instr
+                )
                 return True
         if op1 in self.solved_vars:
             if op2.isdigit():
-                self.solved_vars[res] = self.do_two_op_instr(op1=self.solved_vars[op1], op2=int(op2), instr=instr)
+                self.solved_vars[res] = self.do_two_op_instr(
+                    op1=self.solved_vars[op1], op2=int(op2), instr=instr
+                )
                 return True
             if op2 in self.solved_vars:
-                self.solved_vars[res] = self.do_two_op_instr(op1=self.solved_vars[op1], op2=self.solved_vars[op2], instr=instr)
+                self.solved_vars[res] = self.do_two_op_instr(
+                    op1=self.solved_vars[op1], op2=self.solved_vars[op2], instr=instr
+                )
                 return True
         return False
 
@@ -67,6 +77,8 @@ class Solver:
                 if self.try_one_op_eq(op=oper[1], instr=oper[0], res=res):
                     self.one_op_equations.remove((oper, res))
             for operands, res in self.two_op_equations.copy():
-                if self.try_two_op_eq(op1=operands[0], op2=operands[2], instr=operands[1], res=res):
+                if self.try_two_op_eq(
+                    op1=operands[0], op2=operands[2], instr=operands[1], res=res
+                ):
                     self.two_op_equations.remove((operands, res))
         return self.solved_vars

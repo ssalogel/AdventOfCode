@@ -14,7 +14,14 @@ class Monkey:
         self.if_false = self
         self.inspections = 0
 
-    def setup(self, items: list[int], increaser: Callable[[int], int], test: int, if_true: 'Monkey', if_false: 'Monkey'):
+    def setup(
+        self,
+        items: list[int],
+        increaser: Callable[[int], int],
+        test: int,
+        if_true: "Monkey",
+        if_false: "Monkey",
+    ):
         self.items.extend(items)
         self.operation = increaser
         self.test = test
@@ -55,11 +62,13 @@ class Day11(Day):
         super().__init__(day=11, year=2022, content=content)
 
     def parse_content(self, content: str):
-        res = [Monkey(i) for i, _ in enumerate(content.strip().split('\n\n'))]
+        res = [Monkey(i) for i, _ in enumerate(content.strip().split("\n\n"))]
 
-        for ix, monkey in enumerate(content.strip().split('\n\n')):
+        for ix, monkey in enumerate(content.strip().split("\n\n")):
             name, items, op, test, true, false = monkey.splitlines()
-            items = list(map(int, items.strip().removeprefix("Starting items: ").split(", ")))
+            items = list(
+                map(int, items.strip().removeprefix("Starting items: ").split(", "))
+            )
             if "+" in op:
                 if op.split("+ ")[-1].isnumeric():
                     value = int(op.split("+ ")[-1])
@@ -72,9 +81,9 @@ class Day11(Day):
                     operation = partial(lambda x, y: x * y, value)
                 else:
                     operation = lambda x: x * x
-            test = int(test.split(' ')[-1])
-            true = int(true.split(' ')[-1])
-            false = int(false.split(' ')[-1])
+            test = int(test.split(" ")[-1])
+            true = int(true.split(" ")[-1])
+            false = int(false.split(" ")[-1])
             res[ix].setup(items, operation, test, res[true], res[false])
         return res
 
@@ -82,17 +91,23 @@ class Day11(Day):
         for _ in range(20):
             for monkey in parsed_content:
                 monkey.inspect_all()
-        return sorted([x.inspections for x in parsed_content])[-1] * sorted([x.inspections for x in parsed_content])[-2]
+        return (
+            sorted([x.inspections for x in parsed_content])[-1]
+            * sorted([x.inspections for x in parsed_content])[-2]
+        )
 
     def part2(self, parsed_content) -> int:
         divisor = lcm(*[monkey.test for monkey in parsed_content])
         for _ in range(10000):
             for monkey in parsed_content:
                 monkey.inspect_all_2(divisor)
-        return max([x.inspections for x in parsed_content]) * sorted([x.inspections for x in parsed_content])[-2]
+        return (
+            max([x.inspections for x in parsed_content])
+            * sorted([x.inspections for x in parsed_content])[-2]
+        )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     input_content = """Monkey 0:
   Starting items: 79, 98
   Operation: new = old * 19

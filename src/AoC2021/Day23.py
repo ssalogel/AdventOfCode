@@ -5,17 +5,17 @@ from queue import PriorityQueue
 class Day23(Day):
     def __init__(self, content=None):
         super().__init__(day=23, year=2021, content=content)
-        self.costs = {'A': 1, 'B': 10, 'C': 100, 'D': 1000}
+        self.costs = {"A": 1, "B": 10, "C": 100, "D": 1000}
         self.hallway = [14, 15, 17, 19, 21, 23, 24]
         self.entrances = [16, 18, 20, 22]
         self.houses = []
 
     def parse_content(self, content: str):
-        return ''.join(content.strip().splitlines())
+        return "".join(content.strip().splitlines())
 
     def is_win(self, current_map: str) -> bool:
         for ix, hou in enumerate(self.houses):
-            if any(current_map[h] != 'ABCD'[ix] for h in hou):
+            if any(current_map[h] != "ABCD"[ix] for h in hou):
                 return False
         return True
 
@@ -30,9 +30,9 @@ class Day23(Day):
             top = None
             top_dist = len(home) + 1
             for pos in reversed(home):
-                if start_map[pos] == '.':
+                if start_map[pos] == ".":
                     break
-                if start_map[pos] != 'ABCD'[ix]:
+                if start_map[pos] != "ABCD"[ix]:
                     well_placed = False
                 if not well_placed:
                     top = pos
@@ -48,10 +48,15 @@ class Day23(Day):
             moving_ix = house_tops[ix]
             entry = self.entrances[ix]
             for dest_ix in self.hallway:
-                if all(start_map[pos] == '.' for pos in range(min(dest_ix, entry), max(dest_ix, entry) + 1)):
+                if all(
+                    start_map[pos] == "."
+                    for pos in range(min(dest_ix, entry), max(dest_ix, entry) + 1)
+                ):
                     char = start_map[moving_ix]
                     n_map = f"{start_map[:dest_ix]}{char}{start_map[dest_ix + 1:moving_ix]}.{start_map[moving_ix + 1:]}"
-                    dist = (tops_distances[ix] + abs(entry - dest_ix)) * self.costs[char]
+                    dist = (tops_distances[ix] + abs(entry - dest_ix)) * self.costs[
+                        char
+                    ]
 
                     # after moving someone out of a house, try to move everyone that could back in
                     while True:
@@ -69,7 +74,7 @@ class Day23(Day):
             h_id = "ABCD"[ix]
             hole_dist = len(hou)
             for room in reversed(hou):
-                if start_map[room] == '.':
+                if start_map[room] == ".":
                     opening = room
                     break
                 if start_map[room] != h_id:
@@ -81,7 +86,11 @@ class Day23(Day):
             entry = self.entrances[ix]
             for pos in self.hallway:
                 #             right house                          empty between entry and me
-                if all((x == pos and h_id == start_map[x]) or (pos != x and start_map[x] == '.') for x in range(min(pos, entry), max(pos, entry) + 1)):
+                if all(
+                    (x == pos and h_id == start_map[x])
+                    or (pos != x and start_map[x] == ".")
+                    for x in range(min(pos, entry), max(pos, entry) + 1)
+                ):
                     dist = (hole_dist + abs(pos - entry)) * self.costs[h_id]
                     n_map = f"{start_map[:pos]}.{start_map[pos+1:opening]}{h_id}{start_map[opening+1:]}"
                     return dist, n_map
@@ -109,13 +118,20 @@ class Day23(Day):
         return cost
 
     def part2(self, parsed_content) -> int:
-        self.houses = [[29, 42, 55, 68], [31, 44, 57, 70], [33, 46, 59, 72], [35, 48, 61, 74]]
-        start_map = f"{parsed_content[:13*3]}  #D#C#B#A#    #D#B#A#C#  {parsed_content[13*3:]}"
+        self.houses = [
+            [29, 42, 55, 68],
+            [31, 44, 57, 70],
+            [33, 46, 59, 72],
+            [35, 48, 61, 74],
+        ]
+        start_map = (
+            f"{parsed_content[:13*3]}  #D#C#B#A#    #D#B#A#C#  {parsed_content[13*3:]}"
+        )
         cost, end_map = self.solve(start_map)
         return cost
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     input_content = """#############
 #...........#
 ###B#C#B#D###

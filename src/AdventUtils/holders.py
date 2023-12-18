@@ -17,4 +17,9 @@ class Box:
         return self.length * self.width * self.height
 
     def get_smallest_perimeter(self) -> int:
-        return (self.length + self.width + self.height - max(self.length, self.width, self.height)) * 2
+        return (
+            self.length
+            + self.width
+            + self.height
+            - max(self.length, self.width, self.height)
+        ) * 2

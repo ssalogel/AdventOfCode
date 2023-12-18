@@ -14,7 +14,10 @@ class Day22(Day):
         res = []
         for line in content.strip().splitlines():
             action, dims, *_ = line.split()
-            xs, ys, zs, *_ = [(int(x[2:x.index('..')]), int(x[x.index('..')+2:])) for x in dims.split(',')]
+            xs, ys, zs, *_ = [
+                (int(x[2 : x.index("..")]), int(x[x.index("..") + 2 :]))
+                for x in dims.split(",")
+            ]
             xs = (min(xs), max(xs))
             ys = (min(ys), max(ys))
             zs = (min(zs), max(zs))
@@ -42,7 +45,7 @@ class Day22(Day):
             # old on, new off: negates that overlap
             # both off: cancel the overlapping double count
             # old off, new on: negate that negative square
-            to_add.append((-1*st, ((cx1, cx2), (cy1, cy2), (cz1, cz2))))
+            to_add.append((-1 * st, ((cx1, cx2), (cy1, cy2), (cz1, cz2))))
         if state == "on":
             states.append((1, ((x1, x2), (y1, y2), (z1, z2))))
         for elem in to_add:
@@ -54,15 +57,32 @@ class Day22(Day):
         for st, ((x1, x2), (y1, y2), (z1, z2)) in states:
             if not st:
                 continue
-            s += st * (abs(x2-x1+1) * abs(y2-y1+1) * abs(z2-z1+1))
+            s += st * (abs(x2 - x1 + 1) * abs(y2 - y1 + 1) * abs(z2 - z1 + 1))
         return s
 
     def part1(self, parsed_content: list[Action]) -> int:
         cubes: list[State] = []
         for action, (xs, ys, zs) in parsed_content:
-            if min(xs) > 50 or max(xs) < -50 or min(ys) > 50 or max(ys) < -50 or min(zs) > 50 or max(zs) < -50:
+            if (
+                min(xs) > 50
+                or max(xs) < -50
+                or min(ys) > 50
+                or max(ys) < -50
+                or min(zs) > 50
+                or max(zs) < -50
+            ):
                 continue
-            self.apply((action, ((max(xs[0], -50), min(xs[1], 50)), (max(ys[0], -50), min(ys[1], 50)), (max(zs[0], -50), min(zs[1], 50)))), cubes)
+            self.apply(
+                (
+                    action,
+                    (
+                        (max(xs[0], -50), min(xs[1], 50)),
+                        (max(ys[0], -50), min(ys[1], 50)),
+                        (max(zs[0], -50), min(zs[1], 50)),
+                    ),
+                ),
+                cubes,
+            )
         return self.count_on(cubes)
 
     def part2(self, parsed_content) -> int:
@@ -72,7 +92,7 @@ class Day22(Day):
         return self.count_on(cubes)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     input_content = """on x=-20..26,y=-36..17,z=-47..7
 on x=-20..33,y=-21..23,z=-26..28
 on x=-22..28,y=-29..23,z=-38..16

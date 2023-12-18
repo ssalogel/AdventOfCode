@@ -8,7 +8,7 @@ class Day17(Day):
         self.target = target
 
     def parse_content(self, content: str) -> list[int]:
-        data = content.strip().split('\n')
+        data = content.strip().split("\n")
         return [int(d) for d in data]
 
     def part1(self, parsed_content: list[int]) -> int:

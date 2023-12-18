@@ -19,7 +19,7 @@ class Day12(Day):
                 for item in iterable.values():
                     if isinstance(item, str):
                         continue
-                    if hasattr(item, '__iter__'):
+                    if hasattr(item, "__iter__"):
                         iterables.append(item)
                     elif isinstance(item, int):
                         res += item
@@ -27,7 +27,7 @@ class Day12(Day):
                 for elem in iterable:
                     if isinstance(elem, str):
                         continue
-                    if hasattr(elem, '__iter__'):
+                    if hasattr(elem, "__iter__"):
                         iterables.append(elem)
                     elif isinstance(elem, int):
                         res += elem
@@ -39,12 +39,12 @@ class Day12(Day):
         while len(iterables) > 0:
             iterable = iterables.pop()
             if isinstance(iterable, dict):
-                if 'red' in iterable.values():
+                if "red" in iterable.values():
                     continue
                 for item in iterable.values():
                     if isinstance(item, str):
                         continue
-                    if hasattr(item, '__iter__'):
+                    if hasattr(item, "__iter__"):
                         iterables.append(item)
                     elif isinstance(item, int):
                         res += item
@@ -52,7 +52,7 @@ class Day12(Day):
                 for elem in iterable:
                     if isinstance(elem, str):
                         continue
-                    if hasattr(elem, '__iter__'):
+                    if hasattr(elem, "__iter__"):
                         iterables.append(elem)
                     elif isinstance(elem, int):
                         res += elem

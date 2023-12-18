@@ -13,16 +13,24 @@ class Day4(Day):
     def parse_content(self, content: str) -> list[Assignment]:
         res = []
         for line in content.strip().splitlines():
-            x1, x2, y1, y2 = map(int, re.match(R"(\d+)-(\d+),(\d+)-(\d+)", line).groups())
+            x1, x2, y1, y2 = map(
+                int, re.match(R"(\d+)-(\d+),(\d+)-(\d+)", line).groups()
+            )
             res.append(Assignment(x1=x1, x2=x2, y1=y1, y2=y2))
         return res
 
     def part1(self, parsed_content: list[Assignment]) -> int:
-        return sum([1 for ass in parsed_content if
-                    (ass.x1 <= ass.y1 and ass.x2 >= ass.y2) or (ass.y1 <= ass.x1 and ass.y2 >= ass.x2)])
+        return sum(
+            1
+            for ass in parsed_content
+            if (ass.x1 <= ass.y1 and ass.x2 >= ass.y2)
+            or (ass.y1 <= ass.x1 and ass.y2 >= ass.x2)
+        )
 
     def part2(self, parsed_content: list[Assignment]) -> int:
-        return sum([1 for ass in parsed_content if not (ass.x1 > ass.y2 or ass.x2 < ass.y1)])
+        return sum(
+            [1 for ass in parsed_content if not (ass.x1 > ass.y2 or ass.x2 < ass.y1)]
+        )
 
 
 class Day4SmallInputs(Day):
@@ -35,7 +43,9 @@ class Day4SmallInputs(Day):
     def parse_content(self, content: str) -> list[Assignment]:
         res = []
         for line in content.strip().splitlines():
-            x1, x2, y1, y2 = map(int, re.match(R"(\d+)-(\d+),(\d+)-(\d+)", line).groups())
+            x1, x2, y1, y2 = map(
+                int, re.match(R"(\d+)-(\d+),(\d+)-(\d+)", line).groups()
+            )
             res.append((set(range(x1, x2 + 1)), set(range(y1, y2 + 1))))
         return res
 
@@ -46,7 +56,7 @@ class Day4SmallInputs(Day):
         return sum(1 for x, y in parsed_content if len(x & y) > 0)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     input_content = """2-4,6-8
 2-3,4-5
 5-7,7-9

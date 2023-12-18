@@ -6,7 +6,7 @@ class Day6(Day):
         super().__init__(day=6, year=2021, content=content)
 
     def parse_content(self, content: str):
-        return [int(x) for x in content.split(',')]
+        return [int(x) for x in content.split(",")]
 
     @staticmethod
     def spawn_fishes(fishes: list[int], days: int) -> list[int]:

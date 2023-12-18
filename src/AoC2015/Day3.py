@@ -11,13 +11,13 @@ class Day3(Day):
 
     @classmethod
     def move(cls, move: str, pos: Position2D) -> Position2D:
-        if move == '^':
+        if move == "^":
             return pos.move_up()
-        elif move == '<':
+        elif move == "<":
             return pos.move_left()
-        elif move == '>':
+        elif move == ">":
             return pos.move_right()
-        elif move == 'v':
+        elif move == "v":
             return pos.move_down()
         else:
             raise NotImplementedError

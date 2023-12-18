@@ -8,7 +8,7 @@ class Day11(Day):
 
     def parse_content(self, content: str) -> list[list[int]]:
         res = []
-        for line in content.strip().split('\n'):
+        for line in content.strip().split("\n"):
             res.append([int(c) for c in line])
         return res
 
@@ -51,7 +51,7 @@ class Day11(Day):
         return tot_step
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     content = """5483143223
 2745854711
 5264556173

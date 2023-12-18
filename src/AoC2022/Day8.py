@@ -24,10 +24,13 @@ class Day8(Day):
                 if j in (left_edge, right_edge):
                     acc += 1
                     continue
-                if max(row[0:j]) < tree or max(row[j + 1:]) < tree:
+                if max(row[0:j]) < tree or max(row[j + 1 :]) < tree:
                     acc += 1
                     continue
-                if max([c[j] for c in field[0:i]]) < tree or max([c[j] for c in field[i + 1:]]) < tree:
+                if (
+                    max([c[j] for c in field[0:i]]) < tree
+                    or max([c[j] for c in field[i + 1 :]]) < tree
+                ):
                     acc += 1
         return acc
 
@@ -52,15 +55,19 @@ class Day8(Day):
                 if j in (left_edge, right_edge):
                     continue
 
-                scenic_score = (self.get_view_distance(tree, (line[j] for line in reversed(field[0:i])))
-                                * self.get_view_distance(tree, reversed(row[0:j]))
-                                * self.get_view_distance(tree, row[j + 1:])
-                                * self.get_view_distance(tree, (line[j] for line in field[i + 1:])))
+                scenic_score = (
+                    self.get_view_distance(
+                        tree, (line[j] for line in reversed(field[0:i]))
+                    )
+                    * self.get_view_distance(tree, reversed(row[0:j]))
+                    * self.get_view_distance(tree, row[j + 1 :])
+                    * self.get_view_distance(tree, (line[j] for line in field[i + 1 :]))
+                )
                 max_score = max(max_score, scenic_score)
         return max_score
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     input_content = """30373
 25512
 65332

@@ -11,9 +11,9 @@ class Day1(Day):
     def part1(self, parsed_content: str) -> int:
         floor = 0
         for c in parsed_content:
-            if c == '(':
+            if c == "(":
                 floor += 1
-            elif c == ')':
+            elif c == ")":
                 floor -= 1
             else:
                 raise NotImplementedError
@@ -22,9 +22,9 @@ class Day1(Day):
     def part2(self, parsed_content: str) -> int:
         floor = 0
         for i, c in enumerate(parsed_content):
-            if c == '(':
+            if c == "(":
                 floor += 1
-            elif c == ')':
+            elif c == ")":
                 floor -= 1
             else:
                 raise NotImplementedError

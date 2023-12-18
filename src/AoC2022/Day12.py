@@ -9,10 +9,15 @@ class Day12(Day):
         super().__init__(day=12, year=2022, content=content)
 
     def parse_content(self, content: str):
-        return [[ord(x)-96 if x.islower() else x for x in line] for line in content.strip().splitlines()]
+        return [
+            [ord(x) - 96 if x.islower() else x for x in line]
+            for line in content.strip().splitlines()
+        ]
 
     @staticmethod
-    def djikstra(board: list[list[int]], start: tuple[int, int]) -> dict[tuple[int, int]: float]:
+    def djikstra(
+        board: list[list[int]], start: tuple[int, int]
+    ) -> dict[tuple[int, int] : float]:
         width = len(board[0])
         height = len(board)
         visited = set()
@@ -36,17 +41,19 @@ class Day12(Day):
         return distance
 
     @staticmethod
-    def set_up_board(content) -> tuple[tuple[int, int], tuple[int, int], list[list[int]]]:
+    def set_up_board(
+        content,
+    ) -> tuple[tuple[int, int], tuple[int, int], list[list[int]]]:
         start = (0, 0)
         end = (0, 0)
 
         for ix, row in enumerate(content):
-            if 'S' not in row and 'E' not in row:
+            if "S" not in row and "E" not in row:
                 continue
             for jx, point in enumerate(row):
-                if point == 'S':
+                if point == "S":
                     start = (ix, jx)
-                if point == 'E':
+                if point == "E":
                     end = (ix, jx)
         content[start[0]][start[1]] = 1
         content[end[0]][end[1]] = 26
@@ -58,10 +65,16 @@ class Day12(Day):
 
     def part2(self, parsed_content) -> float:
         _, goal, board = self.set_up_board(parsed_content)
-        return min([x for point, x in self.djikstra(board, goal).items() if board[point[0]][point[1]] == 1])
+        return min(
+            [
+                x
+                for point, x in self.djikstra(board, goal).items()
+                if board[point[0]][point[1]] == 1
+            ]
+        )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     input_content = """Sabqponm
 abcryxxl
 accszExk

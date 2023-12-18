@@ -18,7 +18,7 @@ class packet:
         else:
             return -1
 
-    def __eq__(self, other: 'packet'):
+    def __eq__(self, other: "packet"):
         if isinstance(self.values, int):
             if isinstance(other.values, int):
                 return self.values == other.values
@@ -35,7 +35,7 @@ class packet:
                         return False
                 return len(self) == len(other)
 
-    def __lt__(self, other: 'packet'):
+    def __lt__(self, other: "packet"):
         if isinstance(self.values, int):
             if isinstance(other.values, int):
                 return self.values < other.values
@@ -75,13 +75,22 @@ class Day13(Day):
 
     def part2(self, parsed_content) -> int:
         dividers = [([[2]], [[6]])]
-        sorted_packets = sorted([item for sublist in [[packet(left),packet(right)] for left, right in parsed_content + dividers] for item in sublist])
+        sorted_packets = sorted(
+            [
+                item
+                for sublist in [
+                    [packet(left), packet(right)]
+                    for left, right in parsed_content + dividers
+                ]
+                for item in sublist
+            ]
+        )
         ix1 = sorted_packets.index(packet(dividers[0][0])) + 1
         ix2 = sorted_packets.index(packet(dividers[0][1])) + 1
         return ix1 * ix2
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     input_content = """
 
 [1,1,3,1,1]
